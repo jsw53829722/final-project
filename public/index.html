@@ -86,6 +86,9 @@
         <td onclick="playAudio('시작화면2.mp3')">시작2</td>
       </tr>
       <tr>
+        <td onclick="playAudio('시작화면3.mp3')">시작3</td>
+      </tr>
+      <tr>
         <td class="selected">아이디
           <input type="text" id="personal" onclick="enableAnswerInput('personal')"
             onkeydown="handleInputKeydown(event, 'personal')" autocomplete="off"  readonly >
@@ -113,10 +116,37 @@
         </td>
       </tr>
       <tr>
-        <td onclick="playAudio('지시문14.mp3')">지시문</td>
+        <td onclick="playAudio('개인정보4.mp3')">아래로</td>
       </tr>
       <tr>
-        <td onclick="playAudio('지시문15.mp3')">지시문</td>
+        <td onclick="playAudio('지시문1.mp3')">지시문1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문2.mp3')">지시문2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문3.mp3')">지시문3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문4.mp3')">지시문4</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문5.mp3')">지시문5</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문6.mp3')">지시문6</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문7.mp3')">지시문7</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문8.mp3')">지시문8</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문9.mp3')">지시문9</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문10.mp3')">지시문10</td>
       </tr>
       <tr>
         <td onclick="playAudio('연1.mp3')">연습문제 1</td>
@@ -167,13 +197,13 @@
         </td>
       </tr>
       <tr>
-        <td onclick="playAudio('지시문11.mp3')">지시문</td>
+        <td onclick="playAudio('지시문11.mp3')">지시문11</td>
       </tr>
       <tr>
-        <td onclick="playAudio('지시문12.mp3')">지시문</td>
+        <td onclick="playAudio('지시문12.mp3')">지시문12</td>
       </tr>
       <tr>
-        <td onclick="playAudio('지시문13.mp3')">지시문</td>
+        <td onclick="playAudio('지시문13.mp3')">지시문13</td>
       </tr>
       <tr>
         <td onclick="playAudio('1.mp3')">문제1</td>
@@ -1574,7 +1604,8 @@
     const audioPlayer = new Audio();
     let currentIndex = 0;
     const audioFiles = [
-      '시작화면1.mp3', '시작화면2.mp3', '개인정보1.mp3', '개인정보2.mp3', '개인정보3.mp3', '지시문14.mp3', '지시문15.mp3',
+      '시작화면1.mp3', '시작화면2.mp3', '시작화면3.mp3', '개인정보1.mp3', '개인정보2.mp3', '개인정보3.mp3', '개인정보4.mp3', '지시문1.mp3', '지시문2.mp3', '지시문3.mp3',
+      '지시문4.mp3', '지시문5.mp3', '지시문6.mp3', '지시문7.mp3', '지시문8.mp3', '지시문9.mp3', '지시문10.mp3',
       '연1.mp3', '연1-1.mp3', '연1-2.mp3', '연1-3.mp3', '연1-4.mp3', '답안 입력란1.mp3',
       '연2.mp3', '연2-1.mp3', '연2-2.mp3', '연2-3.mp3', '연2-4.mp3', '답안 입력란2.mp3',
       '지시문11.mp3', '지시문12.mp3', '지시문13.mp3',
@@ -1655,18 +1686,18 @@
 
 
     let isTimerStarted = false;
-const targetIndexToStartTimer = 22; // 타이머를 시작할 인덱스
-const targetIndexToMoveCursor = 336; // 제한 시간이 다 되면 이동할 인덱스
-const timerMinutes = 1; // 제한 시간 (분)
-let remainingTime = timerMinutes * 10; // 남은 시간 (초)
+const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
+const targetIndexToMoveCursor = 346; // 제한 시간이 다 되면 이동할 인덱스
+const timerMinutes = 50; // 제한 시간 (분)
+let remainingTime = timerMinutes * 60; // 남은 시간 (초)
 
 function handleKeyDown(event) {
   const warningAudioElement = document.getElementById('warning-audio');
   
   switch (event.key) {
     case 'ArrowDown':
-      if ([339, 341, 343, 345, 347, 349, 351, 353, 355, 357].includes(currentIndex)) {
-        const inputId = `criteria${(currentIndex - 339) / 2 + 1}`;
+      if ([349, 351, 353, 355, 357, 359, 361, 363, 365, 367].includes(currentIndex)) {
+        const inputId = `criteria${(currentIndex - 349) / 2 + 1}`;
         const inputValue = document.getElementById(inputId).value;
         if (!inputValue) {
           warningAudioElement.play(); // 경고음 재생
@@ -1684,12 +1715,12 @@ function handleKeyDown(event) {
         isTimerStarted = true;
       }
       // 427번 인덱스 셀에 도착했을 때 서버로 데이터 전송
-      if (currentIndex === 358) {
+      if (currentIndex === 368) {
         submitAnswersAndTimeToServer(); // 데이터 전송 함수 호출
       }
       break;
     case 'ArrowUp':
-      if (currentIndex !== 336 && currentIndex !== 22) { // 405번 or 30번 인덱스 셀이 아닌 경우에만 작동하도록 조건 추가
+      if (currentIndex !== 346 && currentIndex !== 32) { // 405번 or 30번 인덱스 셀이 아닌 경우에만 작동하도록 조건 추가
         currentIndex--;
         limitCurrentIndex();
         playAudio(audioFiles[currentIndex]);
@@ -1757,10 +1788,10 @@ function updateTimer() {
     }
 
     function limitCurrentIndex() {
-      currentIndex = Math.max(0, Math.min(currentIndex, 358));//셀 이동 제한(마지막 인덱스-1)
+      currentIndex = Math.max(0, Math.min(currentIndex, 368));//셀 이동 제한(마지막 인덱스-1)
     }
 
-    const targetIndex = 336; // 이 인덱스까지 타이머 잼
+    const targetIndex = 346; // 이 인덱스까지 타이머 잼
 
     function playAudio(filename) {
   const warningAudioElement = document.getElementById('warning-audio');
@@ -1793,12 +1824,12 @@ var interval;
 var responseStartTime; // 반응시간 타이머의 시작 시간을 저장하는 변수
 
 // 반응시간 그룹을 정의합니다. 각 인덱스는 그룹이 끝나는 지점을 나타냅니다.
-var groups = [21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 
-      87, 95, 101, 107, 113, 119, 125, 132, 138, 144,
-      150, 156, 162, 168, 174, 180, 186, 192, 198, 204, 
-      210, 216, 223, 229, 235, 243, 249, 255, 261, 267,
-      273, 279, 285, 291, 297, 303, 309, 316, 322, 328, 
-      334, 335];
+var groups = [29, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 
+      97, 105, 111, 117, 123, 129, 135, 142, 148, 154,
+      160, 166, 172, 178, 184, 190, 196, 202, 208, 214, 
+      220, 226, 233, 239, 245, 253, 259, 265, 271, 277,
+      283, 289, 295, 301, 307, 313, 319, 326, 332, 338, 
+      344, 345];
 
 // 반응시간 타이머 시작
 
@@ -1808,14 +1839,14 @@ function startResponseTimer() {
   interval = setInterval(function () {
     var now = new Date();
     responseTimes[currentGroup] = (now - responseStartTime) / 1000; // 초 단위로 계산
-    console.log("그룹 " + currentGroup + "의 반응시간: " + responseTimes[currentGroup].toFixed(2) + "초");// 소수점 두 자리까지 표시
+    console.log("그룹 " + currentGroup + "의 반응시간: " + responseTimes[currentGroup].toFixed(2) + "초"); // 소수점 두 자리까지 표시
   }, 10); // 0.01초마다 실행
 }
 
 // 위/아래 방향키로 문제 이동
 window.addEventListener("keydown", function (event) {
   var newProblemIndex = currentProblem;
-  if (event.key === "ArrowUp" && currentProblem > 0 && currentProblem !== 336 && currentProblem !== 22) {
+  if (event.key === "ArrowUp" && currentProblem > 0 && currentProblem !== 346 && currentProblem !== 32) {
     newProblemIndex--;
   } else if (event.key === "ArrowDown") {
     newProblemIndex++;
@@ -1836,7 +1867,7 @@ window.addEventListener("keydown", function (event) {
   }
 
   // 404 인덱스를 넘어가면 반응시간 타이머를 종료합니다.
-  if (newProblemIndex > 335) {
+  if (newProblemIndex > 345) {
     clearInterval(interval);
   }
 
@@ -1847,13 +1878,13 @@ window.addEventListener("keydown", function (event) {
 startResponseTimer();
 
 
-    const answerCellIndices = [2, 3, 4, 12, 18,
-    27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 
-      87, 95, 101, 107, 113, 119, 125, 132, 138, 144,
-      150, 156, 162, 168, 174, 180, 186, 192, 198, 204, 
-      210, 216, 223, 229, 235, 243, 249, 255, 261, 267,
-      273, 279, 285, 291, 297, 303, 309, 316, 322, 328, 
-      334, 339, 341, 343, 345, 347, 349, 351, 353, 355, 357];
+    const answerCellIndices = [3, 4, 5, 22, 28,
+      37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 
+      97, 105, 111, 117, 123, 129, 135, 142, 148, 154,
+      160, 166, 172, 178, 184, 190, 196, 202, 208, 214, 
+      220, 226, 233, 239, 245, 253, 259, 265, 271, 277,
+      283, 289, 295, 301, 307, 313, 319, 326, 332, 338, 
+      344, 349, 351, 353, 355, 357, 359, 361, 363, 365, 367];
 
     function isAnswerCell(index) {
       return answerCellIndices.includes(index);
@@ -1907,13 +1938,13 @@ startResponseTimer();
   }
 
   if (event.key === 'ArrowDown') {
-    if ([339, 341, 343, 345, 347, 349, 351, 353, 355, 357].includes(currentIndex) && !input.value) {
+    if ([349, 351, 353, 355, 357, 359, 361, 363, 365, 367].includes(currentIndex) && !input.value) {
       return; // 답변이 입력되지 않았다면 아래 방향키를 눌러도 블러 처리하지 않음
     }
     event.preventDefault();
     input.blur();
   } else if (!maxLength && event.key >= '0' && event.key <= '9') {
-    if ([339, 341, 343, 345, 347, 349, 351, 353, 355, 357].includes(currentIndex)) {
+    if ([347, 349, 351, 353, 355, 357, 359, 361, 363, 365].includes(currentIndex)) {
       input.value = ""; // 덮어쓰기 기능 유지
     }
     readNumber(event.key); // 숫자를 읽어주는 함수 호출
@@ -2056,7 +2087,7 @@ startResponseTimer();
       // 웹페이지를 닫기 전에 서버로 답변을 전송하는 함수 호출
       submitAnswersAndTimeToServer();
     });
-    
+
     playAudio(audioFiles[currentIndex]);
     document.addEventListener('keydown', handleKeyDown);
   </script>
