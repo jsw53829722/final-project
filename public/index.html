@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>시험 페이지</title>
+    <div id="timer"></div>
+
+  <style>
+    /* 중앙 정렬을 위한 스타일 */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2350vh;
+      margin: 0;
+    }
+
+    #table-container {
+      margin-top: 40px;
+      /* 테이블과 상단 여백 조절 */
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td {
+      cursor: pointer;
+    }
+
+    .selected {
+      background-color: yellow;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      background-color: transparent;
+      outline: none;
+      text-align: center;
+    }
+
+    /* 타이머 고정 스타일 추가 */
+    #timer {
+  position: fixed; /* 고정 위치 설정 */
+  top: 0;          /* 상단에서 0px 떨어진 위치 */
+  left: 0;         /* 왼쪽에서 0px 떨어진 위치 */
+  z-index: 9999;   /* 다른 요소 위에 나타나도록 z-index 설정 */
+}
+#timer {
+      display: none;
+    }
+
+    
+
+    html,
+    body {
+      pointer-events: none;
+      /* 전체 페이지에 대한 마우스 이벤트 비활성화 */
+    }
+  </style>
+  
+</head>
+
+<body>
+  <div id="timer" style="font-size: 24px; font-weight: bold; text-align: center; margin-top: 10px;"></div>
+
+  <div id="message" style="font-size: 36px; font-weight: bold; text-align: center; margin-top: 20px; display: none;">
+    시험이 종료되었습니다.
+  </div>
+  <div id="table-container">
+    <table>
+      <tr>
+        <td onclick="playAudio('시작화면1.mp3')">시작1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('시작화면2.mp3')">시작2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('시작화면3.mp3')">시작3</td>
+      </tr>
+      <tr>
+        <td class="selected">아이디
+          <input type="text" id="personal" onclick="enableAnswerInput('personal')"
+            onkeydown="handleInputKeydown(event, 'personal')" autocomplete="off"  readonly >
+          <audio id="audio54" controls style="display: none;">
+            <source src="개인정보1.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td class="selected">성별
+          <input type="text" id="sex" onclick="enableAnswerInput('sex')" onkeydown="handleInputKeydown(event, 'sex')"
+            autocomplete="off"  >
+          <audio id="audio55" controls style="display: none;">
+            <source src="개인정보2.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td class="selected">생년월일
+          <input type="text" id="yymmdd" onclick="enableAnswerInput('yymmdd')"
+            onkeydown="handleInputKeydown(event, 'yymmdd')" autocomplete="off"  >
+          <audio id="audio56" controls style="display: none;">
+            <source src="개인정보3.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('개인정보4.mp3')">아래로</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문1.mp3')">지시문1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문2.mp3')">지시문2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문3.mp3')">지시문3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문4.mp3')">지시문4</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문5.mp3')">지시문5</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문6.mp3')">지시문6</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문7.mp3')">지시문7</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문8.mp3')">지시문8</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문9.mp3')">지시문9</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문10.mp3')">지시문10</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연1.mp3')">연습문제 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연1-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연1-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연1-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연1-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer1" onclick="enableAnswerInput('answer1')"
+            onkeydown="handleInputKeydown(event, 'answer1')" autocomplete="off"  >
+          <audio id="audio1" controls style="display: none;">
+            <source src="답안 입력란1.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연2.mp3')">연습문제2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연2-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연2-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연2-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('연2-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer2" onclick="enableAnswerInput('answer2')"
+            onkeydown="handleInputKeydown(event, 'answer2')" autocomplete="off"  >
+          <audio id="audio1" controls style="display: none;">
+            <source src="답안 입력란2.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문11.mp3')">지시문11</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문12.mp3')">지시문12</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('지시문13.mp3')">지시문13</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('1.mp3')">문제1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('1-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('1-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('1-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('1-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer3" onclick="enableAnswerInput('answer3')"
+            onkeydown="handleInputKeydown(event, 'answer3')" autocomplete="off"  >
+          <audio id="audio3" controls style="display: none;">
+            <source src="답안 입력란3.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('2.mp3')">문제2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('2-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('2-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('2-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('2-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer4" onclick="enableAnswerInput('answer4')"
+            onkeydown="handleInputKeydown(event, 'answer4')" autocomplete="off"  >
+          <audio id="audio4" controls style="display: none;">
+            <source src="답안 입력란4.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('3.mp3')">문제3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('3-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('3-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('3-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('3-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer5" onclick="enableAnswerInput('answer5')"
+            onkeydown="handleInputKeydown(event, 'answer5')" autocomplete="off"  >
+          <audio id="audio5" controls style="display: none;">
+            <source src="답안 입력란5.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('4.mp3')">문제4</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('4-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('4-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('4-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('4-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer6" onclick="enableAnswerInput('answer6')"
+            onkeydown="handleInputKeydown(event, 'answer6')" autocomplete="off"  >
+          <audio id="audio6" controls style="display: none;">
+            <source src="답안 입력란6.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('5.mp3')">문제5</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('5-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('5-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('5-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('5-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer7" onclick="enableAnswerInput('answer7')"
+            onkeydown="handleInputKeydown(event, 'answer7')" autocomplete="off"  >
+          <audio id="audio7" controls style="display: none;">
+            <source src="답안 입력란7.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('6.mp3')">문제6</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('6-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('6-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('6-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('6-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer8" onclick="enableAnswerInput('answer8')"
+            onkeydown="handleInputKeydown(event, 'answer8')" autocomplete="off"  >
+          <audio id="audio8" controls style="display: none;">
+            <source src="답안 입력란8.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('7.mp3')">문제7</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('7-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('7-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('7-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('7-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer9" onclick="enableAnswerInput('answer9')"
+            onkeydown="handleInputKeydown(event, 'answer9')" autocomplete="off"  >
+          <audio id="audio9" controls style="display: none;">
+            <source src="답안 입력란9.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('8.mp3')">문제8</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('8-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('8-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('8-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('8-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer10" onclick="enableAnswerInput('answer10')"
+            onkeydown="handleInputKeydown(event, 'answer10')" autocomplete="off"  >
+          <audio id="audio10" controls style="display: none;">
+            <source src="답안 입력란10.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('9.mp3')">문제9</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('9-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('9-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('9-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('9-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer11" onclick="enableAnswerInput('answer11')"
+            onkeydown="handleInputKeydown(event, 'answer11')" autocomplete="off"  >
+          <audio id="audio11" controls style="display: none;">
+            <source src="답안 입력란11.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('10.mp3')">문제10</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('10-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('10-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('10-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('10-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer12" onclick="enableAnswerInput('answer12')"
+            onkeydown="handleInputKeydown(event, 'answer12')" autocomplete="off"  >
+          <audio id="audio12" controls style="display: none;">
+            <source src="답안 입력란12.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('11.mp3')">문제11</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('11-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('11-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('11-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('11-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer13" onclick="enableAnswerInput('answer13')"
+            onkeydown="handleInputKeydown(event, 'answer13')" autocomplete="off"  >
+          <audio id="audio13" controls style="display: none;">
+            <source src="답안 입력란13.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12.mp3')">문제12</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12명제1.mp3')">명제1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12명제2.mp3')">명제2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('12-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer14" onclick="enableAnswerInput('answer14')"
+            onkeydown="handleInputKeydown(event, 'answer14')" autocomplete="off"  >
+          <audio id="audio14" controls style="display: none;">
+            <source src="답안 입력란14.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('13.mp3')">문제13</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('13-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('13-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('13-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('13-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer15" onclick="enableAnswerInput('answer15')"
+            onkeydown="handleInputKeydown(event, 'answer15')" autocomplete="off"  >
+          <audio id="audio15" controls style="display: none;">
+            <source src="답안 입력란15.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('14.mp3')">문제14</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('14-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('14-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('14-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('14-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer16" onclick="enableAnswerInput('answer16')"
+            onkeydown="handleInputKeydown(event, 'answer16')" autocomplete="off"  >
+          <audio id="audio16" controls style="display: none;">
+            <source src="답안 입력란16.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('15.mp3')">문제15</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('15-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('15-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('15-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('15-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer17" onclick="enableAnswerInput('answer17')"
+            onkeydown="handleInputKeydown(event, 'answer17')" autocomplete="off"  >
+          <audio id="audio17" controls style="display: none;">
+            <source src="답안 입력란17.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('16.mp3')">문제16</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('16-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('16-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('16-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('16-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer18" onclick="enableAnswerInput('answer18')"
+            onkeydown="handleInputKeydown(event, 'answer18')" autocomplete="off"  >
+          <audio id="audio18" controls style="display: none;">
+            <source src="답안 입력란18.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('17mp3')">문제17</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('17-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('17-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('17-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('17-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer19" onclick="enableAnswerInput('answer19')"
+            onkeydown="handleInputKeydown(event, 'answer19')" autocomplete="off"  >
+          <audio id="audio19" controls style="display: none;">
+            <source src="답안 입력란19.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18.mp3')">문제18</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18세단어.mp3')">세단어</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('18-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer20" onclick="enableAnswerInput('answer20')"
+            onkeydown="handleInputKeydown(event, 'answer20')" autocomplete="off"  >
+          <audio id="audio20" controls style="display: none;">
+            <source src="답안 입력란20.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('19.mp3')">문제19</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('19-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('19-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('19-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('19-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer21" onclick="enableAnswerInput('answer21')"
+            onkeydown="handleInputKeydown(event, 'answer21')" autocomplete="off"  >
+          <audio id="audio21" controls style="display: none;">
+            <source src="답안 입력란21.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('20.mp3')">문제20</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('20-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('20-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('20-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('20-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer22" onclick="enableAnswerInput('answer22')"
+            onkeydown="handleInputKeydown(event, 'answer22')" autocomplete="off"  >
+          <audio id="audio22" controls style="display: none;">
+            <source src="답안 입력란22.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('21.mp3')">문제21</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('21-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('21-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('21-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('21-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer23" onclick="enableAnswerInput('answer23')"
+            onkeydown="handleInputKeydown(event, 'answer23')" autocomplete="off"  >
+          <audio id="audio23" controls style="display: none;">
+            <source src="답안 입력란23.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('22.mp3')">문제22</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('22-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('22-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('22-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('22-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer24" onclick="enableAnswerInput('answer24')"
+            onkeydown="handleInputKeydown(event, 'answer24')" autocomplete="off"  >
+          <audio id="audio24" controls style="display: none;">
+            <source src="답안 입력란24.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('23.mp3')">문제23</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('23-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('23-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('23-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('23-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer25" onclick="enableAnswerInput('answer25')"
+            onkeydown="handleInputKeydown(event, 'answer25')" autocomplete="off"  >
+          <audio id="audio25" controls style="display: none;">
+            <source src="답안 입력란25.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('24.mp3')">문제24</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('24-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('24-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('24-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('24-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer26" onclick="enableAnswerInput('answer26')"
+            onkeydown="handleInputKeydown(event, 'answer26')" autocomplete="off"  >
+          <audio id="audio26" controls style="display: none;">
+            <source src="답안 입력란26.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('25.mp3')">문제25</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('25-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('25-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('25-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('25-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer27" onclick="enableAnswerInput('answer27')"
+            onkeydown="handleInputKeydown(event, 'answer27')" autocomplete="off"  >
+          <audio id="audio27" controls style="display: none;">
+            <source src="답안 입력란27.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('26.mp3')">문제26</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('26-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('26-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('26-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('26-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer28" onclick="enableAnswerInput('answer28')"
+            onkeydown="handleInputKeydown(event, 'answer28')" autocomplete="off"  >
+          <audio id="audio28" controls style="display: none;">
+            <source src="답안 입력란28.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('27.mp3')">문제27</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('27-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('27-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('27-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('27-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer29" onclick="enableAnswerInput('answer29')"
+            onkeydown="handleInputKeydown(event, 'answer29')" autocomplete="off"  >
+          <audio id="audio29" controls style="display: none;">
+            <source src="답안 입력란29.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('28.mp3')">문제28</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('28-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('28-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('28-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('28-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer30" onclick="enableAnswerInput('answer30')"
+            onkeydown="handleInputKeydown(event, 'answer30')" autocomplete="off"  >
+          <audio id="audio30" controls style="display: none;">
+            <source src="답안 입력란30.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('29.mp3')">문제29</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('29-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('29-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('29-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('29-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer31" onclick="enableAnswerInput('answer31')"
+            onkeydown="handleInputKeydown(event, 'answer31')" autocomplete="off"  >
+          <audio id="audio31" controls style="display: none;">
+            <source src="답안 입력란31.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('30.mp3')">문제30</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('30-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('30-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('30-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('30-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer32" onclick="enableAnswerInput('answer32')"
+            onkeydown="handleInputKeydown(event, 'answer32')" autocomplete="off"  >
+          <audio id="audio32" controls style="display: none;">
+            <source src="답안 입력란2.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('31.mp3')">문제31</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('31-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('31-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('31-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('31-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer33" onclick="enableAnswerInput('answer33')"
+            onkeydown="handleInputKeydown(event, 'answer33')" autocomplete="off"  >
+          <audio id="audio33" controls style="display: none;">
+            <source src="답안 입력란33.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('32.mp3')">문제32</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('32-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('32-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('32-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('32-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer34" onclick="enableAnswerInput('answer34')"
+            onkeydown="handleInputKeydown(event, 'answer34')" autocomplete="off"  >
+          <audio id="audio34" controls style="display: none;">
+            <source src="답안 입력란34.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33.mp3')">문제33</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33세단어.mp3')">세단어</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('33-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer35" onclick="enableAnswerInput('answer35')"
+            onkeydown="handleInputKeydown(event, 'answer35')" autocomplete="off"  >
+          <audio id="audio35" controls style="display: none;">
+            <source src="답안 입력란35.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('34.mp3')">문제34</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('34-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('34-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('34-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('34-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer36" onclick="enableAnswerInput('answer36')"
+            onkeydown="handleInputKeydown(event, 'answer36')" autocomplete="off"  >
+          <audio id="audio36" controls style="display: none;">
+            <source src="답안 입력란36.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('35.mp3')">문제35</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('35-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('35-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('35-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('35-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer37" onclick="enableAnswerInput('answer37')"
+            onkeydown="handleInputKeydown(event, 'answer37')" autocomplete="off"  >
+          <audio id="audio37" controls style="display: none;">
+            <source src="답안 입력란37.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36.mp3')">문제36</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36명제1.mp3')">명제1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36명제2.mp3')">명제2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('36-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer38" onclick="enableAnswerInput('answer38')"
+            onkeydown="handleInputKeydown(event, 'answer38')" autocomplete="off"  >
+          <audio id="audio38" controls style="display: none;">
+            <source src="답안 입력란38.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('37.mp3')">문제37</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('37-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('37-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('37-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('37-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer39" onclick="enableAnswerInput('answer39')"
+            onkeydown="handleInputKeydown(event, 'answer39')" autocomplete="off"  >
+          <audio id="audio39" controls style="display: none;">
+            <source src="답안 입력란39.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('38.mp3')">문제38</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('38-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('38-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('38-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('38-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer40" onclick="enableAnswerInput('answer40')"
+            onkeydown="handleInputKeydown(event, 'answer40')" autocomplete="off"  >
+          <audio id="audio40" controls style="display: none;">
+            <source src="답안 입력란40.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('39.mp3')">문제39</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('39-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('39-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('39-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('39-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer41" onclick="enableAnswerInput('answer41')"
+            onkeydown="handleInputKeydown(event, 'answer41')" autocomplete="off"  >
+          <audio id="audio41" controls style="display: none;">
+            <source src="답안 입력란41.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('40.mp3')">문제40</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('40-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('40-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('40-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('40-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer42" onclick="enableAnswerInput('answer42')"
+            onkeydown="handleInputKeydown(event, 'answer42')" autocomplete="off"  >
+          <audio id="audio42" controls style="display: none;">
+            <source src="답안 입력란42.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('41.mp3')">문제41</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('41-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('41-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('41-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('41-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer43" onclick="enableAnswerInput('answer43')"
+            onkeydown="handleInputKeydown(event, 'answer43')" autocomplete="off"  >
+          <audio id="audio43" controls style="display: none;">
+            <source src="답안 입력란43.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('42.mp3')">문제42</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('42-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('42-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('42-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('42-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer44" onclick="enableAnswerInput('answer44')"
+            onkeydown="handleInputKeydown(event, 'answer44')" autocomplete="off"  >
+          <audio id="audio44" controls style="display: none;">
+            <source src="답안 입력란44.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('43.mp3')">문제43</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('43-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('43-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('43-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('43-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer45" onclick="enableAnswerInput('answer45')"
+            onkeydown="handleInputKeydown(event, 'answer45')" autocomplete="off"  >
+          <audio id="audio45" controls style="display: none;">
+            <source src="답안 입력란45.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('44.mp3')">문제44</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('44-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('44-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('44-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('44-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer46" onclick="enableAnswerInput('answer46')"
+            onkeydown="handleInputKeydown(event, 'answer46')" autocomplete="off"  >
+          <audio id="audio46" controls style="display: none;">
+            <source src="답안 입력란46.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('45.mp3')">문제45</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('45-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('45-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('45-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('45-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer47" onclick="enableAnswerInput('answer47')"
+            onkeydown="handleInputKeydown(event, 'answer47')" autocomplete="off"  >
+          <audio id="audio47" controls style="display: none;">
+            <source src="답안 입력란47.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('46.mp3')">문제46</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('46-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('46-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('46-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('46-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer48" onclick="enableAnswerInput('answer48')"
+            onkeydown="handleInputKeydown(event, 'answer48')" autocomplete="off"  >
+          <audio id="audio48" controls style="display: none;">
+            <source src="답안 입력란48.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('47.mp3')">문제47</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('47-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('47-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('47-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('47-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer49" onclick="enableAnswerInput('answer49')"
+            onkeydown="handleInputKeydown(event, 'answer49')" autocomplete="off"  >
+          <audio id="audio49" controls style="display: none;">
+            <source src="답안 입력란49.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48.mp3')">문제48</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48세단어.mp3')">세단어</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('48-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer50" onclick="enableAnswerInput('answer50')"
+            onkeydown="handleInputKeydown(event, 'answer50')" autocomplete="off"  >
+          <audio id="audio50" controls style="display: none;">
+            <source src="답안 입력란50.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('49.mp3')">문제49</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('49-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('49-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('49-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('49-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer51" onclick="enableAnswerInput('answer51')"
+            onkeydown="handleInputKeydown(event, 'answer51')" autocomplete="off"  >
+          <audio id="audio51" controls style="display: none;">
+            <source src="답안 입력란51.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('50.mp3')">문제50</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('50-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('50-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('50-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('50-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer52" onclick="enableAnswerInput('answer52')"
+            onkeydown="handleInputKeydown(event, 'answer52')" autocomplete="off"  >
+          <audio id="audio52" controls style="display: none;">
+            <source src="답안 입력란52.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('51.mp3')">문제51</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('51-1.mp3')">보기 1</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('51-2.mp3')">보기 2</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('51-3.mp3')">보기 3</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('51-4.mp3')">보기 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="answer53" onclick="enableAnswerInput('answer53')"
+            onkeydown="handleInputKeydown(event, 'answer53')" autocomplete="off"  >
+          <audio id="audio53" controls style="display: none;">
+            <source src="답안 입력란53.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('설문 지시문1.mp3')">확인</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('설문 지시문2.mp3')">시험종료</td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('설문 지시문3.mp3')">설문안내</td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거1.mp3')">설문조사 1</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria1" onclick="enableAnswerInput('criteria1')"
+            onkeydown="handleInputKeydown(event, 'criteria1')" autocomplete="off" >
+          <audio id="audio57" controls style="display: none;">
+            <source src="답안 입력란57.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거2.mp3')">설문조사 2</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria2" onclick="enableAnswerInput('criteria2')"
+            onkeydown="handleInputKeydown(event, 'criteria2')" autocomplete="off" >
+          <audio id="audio58" controls style="display: none;">
+            <source src="답안 입력란58.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거3.mp3')">설문조사 3</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria3" onclick="enableAnswerInput('criteria3')"
+            onkeydown="handleInputKeydown(event, 'criteria3')" autocomplete="off" >
+          <audio id="audio59" controls style="display: none;">
+            <source src="답안 입력란59.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거4.mp3')">설문조사 4</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria4" onclick="enableAnswerInput('criteria4')"
+            onkeydown="handleInputKeydown(event, 'criteria4')" autocomplete="off" >
+          <audio id="audio60" controls style="display: none;">
+            <source src="답안 입력란60.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거5.mp3')">설문조사 5</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria5" onclick="enableAnswerInput('criteria5')"
+            onkeydown="handleInputKeydown(event, 'criteria5')" autocomplete="off" >
+          <audio id="audio61" controls style="display: none;">
+            <source src="답안 입력란61.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거6.mp3')">설문조사 6</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria6" onclick="enableAnswerInput('criteria6')"
+            onkeydown="handleInputKeydown(event, 'criteria6')" autocomplete="off" >
+          <audio id="audio62" controls style="display: none;">
+            <source src="답안 입력란62.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      
+      <tr>
+        <td onclick="playAudio('준거7.mp3')">설문조사 7</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria7" onclick="enableAnswerInput('criteria7')"
+            onkeydown="handleInputKeydown(event, 'criteria7')" autocomplete="off" >
+          <audio id="audio63" controls style="display: none;">
+            <source src="답안 입력란63.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('준거8.mp3')">설문조사 8</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria8" onclick="enableAnswerInput('criteria8')"
+            onkeydown="handleInputKeydown(event, 'criteria8')" autocomplete="off" >
+          <audio id="audio64" controls style="display: none;">
+            <source src="답안 입력란64.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('준거9.mp3')">설문조사 9</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria9" onclick="enableAnswerInput('criteria9')"
+            onkeydown="handleInputKeydown(event, 'criteria9')" autocomplete="off" >
+          <audio id="audio65" controls style="display: none;">
+            <source src="답안 입력란65.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('준거10.mp3')">설문조사 10</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="criteria10" onclick="enableAnswerInput('criteria10')"
+            onkeydown="handleInputKeydown(event, 'criteria10')" autocomplete="off" >
+          <audio id="audio66" controls style="display: none;">
+            <source src="답안 입력란66.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('설문종료안내.mp3')">설문조사 종료</td>
+      </tr>
+
+      <audio id="warning-audio">
+        <source src="경고음파일.mp3" type="audio/mpeg">
+      </audio>
+      
+
+  </div>
+  </table>
+  <script>
+   let formSubmitted = false;
+    const audioPlayer = new Audio();
+    let currentIndex = 0;
+    const audioFiles = [
+      '시작화면1.mp3', '시작화면2.mp3', '시작화면3.mp3', '개인정보1.mp3', '개인정보2.mp3', '개인정보3.mp3', '개인정보4.mp3', '지시문1.mp3', '지시문2.mp3', '지시문3.mp3',
+      '지시문4.mp3', '지시문5.mp3', '지시문6.mp3', '지시문7.mp3', '지시문8.mp3', '지시문9.mp3', '지시문10.mp3',
+      '연1.mp3', '연1-1.mp3', '연1-2.mp3', '연1-3.mp3', '연1-4.mp3', '답안 입력란1.mp3',
+      '연2.mp3', '연2-1.mp3', '연2-2.mp3', '연2-3.mp3', '연2-4.mp3', '답안 입력란2.mp3',
+      '지시문11.mp3', '지시문12.mp3', '지시문13.mp3',
+      '1.mp3', '1-1.mp3', '1-2.mp3', '1-3.mp3', '1-4.mp3', '답안 입력란3.mp3',
+      '2.mp3', '2-1.mp3', '2-2.mp3', '2-3.mp3', '2-4.mp3', '답안 입력란4.mp3',
+      '3.mp3', '3-1.mp3', '3-2.mp3', '3-3.mp3', '3-4.mp3', '답안 입력란5.mp3',
+      '4.mp3', '4-1.mp3', '4-2.mp3', '4-3.mp3', '4-4.mp3', '답안 입력란6.mp3',
+      '5.mp3', '5-1.mp3', '5-2.mp3', '5-3.mp3', '5-4.mp3', '답안 입력란7.mp3',
+      '6.mp3', '6-1.mp3', '6-2.mp3', '6-3.mp3', '6-4.mp3', '답안 입력란8.mp3',
+      '7.mp3', '7-1.mp3', '7-2.mp3', '7-3.mp3', '7-4.mp3', '답안 입력란9.mp3',
+      '8.mp3', '8-1.mp3', '8-2.mp3', '8-3.mp3', '8-4.mp3', '답안 입력란10.mp3',
+      '9.mp3', '9-1.mp3', '9-2.mp3', '9-3.mp3', '9-4.mp3', '답안 입력란11.mp3',
+      '10.mp3', '10-1.mp3', '10-2.mp3', '10-3.mp3', '10-4.mp3', '답안 입력란12.mp3',
+      '11.mp3', '11-1.mp3', '11-2.mp3', '11-3.mp3', '11-4.mp3', '답안 입력란13.mp3',
+      '12.mp3', '12명제1.mp3', '12명제2.mp3', '12-1.mp3', '12-2.mp3', '12-3.mp3', '12-4.mp3', '답안 입력란14.mp3',
+      '13.mp3', '13-1.mp3', '13-2.mp3', '13-3.mp3', '13-4.mp3', '답안 입력란15.mp3',
+      '14.mp3', '14-1.mp3', '14-2.mp3', '14-3.mp3', '14-4.mp3', '답안 입력란16.mp3',
+      '15.mp3', '15-1.mp3', '15-2.mp3', '15-3.mp3', '15-4.mp3', '답안 입력란17.mp3',
+      '16.mp3', '16-1.mp3', '16-2.mp3', '16-3.mp3', '16-4.mp3', '답안 입력란18.mp3',
+      '17.mp3', '17-1.mp3', '17-2.mp3', '17-3.mp3', '17-4.mp3', '답안 입력란19.mp3',
+      '18.mp3','18세단어.mp3', '18-1.mp3', '18-2.mp3', '18-3.mp3', '18-4.mp3', '답안 입력란20.mp3',
+      '19.mp3', '19-1.mp3', '19-2.mp3', '19-3.mp3', '19-4.mp3', '답안 입력란21.mp3',
+      '20.mp3', '20-1.mp3', '20-2.mp3', '20-3.mp3', '20-4.mp3', '답안 입력란22.mp3',
+      '21.mp3', '21-1.mp3', '21-2.mp3', '21-3.mp3', '21-4.mp3', '답안 입력란23.mp3',
+      '22.mp3', '22-1.mp3', '22-2.mp3', '22-3.mp3', '22-4.mp3', '답안 입력란24.mp3',
+      '23.mp3', '23-1.mp3', '23-2.mp3', '23-3.mp3', '23-4.mp3', '답안 입력란25.mp3',
+      '24.mp3', '24-1.mp3', '24-2.mp3', '24-3.mp3', '24-4.mp3', '답안 입력란26.mp3',
+      '25.mp3', '25-1.mp3', '25-2.mp3', '25-3.mp3', '25-4.mp3', '답안 입력란27.mp3',
+      '26.mp3', '26-1.mp3', '26-2.mp3', '26-3.mp3', '26-4.mp3', '답안 입력란28.mp3',
+      '27.mp3', '27-1.mp3', '27-2.mp3', '27-3.mp3', '27-4.mp3', '답안 입력란29.mp3',
+      '28.mp3', '28-1.mp3', '28-2.mp3', '28-3.mp3', '28-4.mp3', '답안 입력란30.mp3',
+      '29.mp3', '29-1.mp3', '29-2.mp3', '29-3.mp3', '29-4.mp3', '답안 입력란31.mp3',
+      '30.mp3', '30-1.mp3', '30-2.mp3', '30-3.mp3', '30-4.mp3', '답안 입력란32.mp3',
+      '31.mp3', '31-1.mp3', '31-2.mp3', '31-3.mp3', '31-4.mp3', '답안 입력란33.mp3',
+      '32.mp3', '32-1.mp3', '32-2.mp3', '32-3.mp3', '32-4.mp3', '답안 입력란34.mp3',
+      '33.mp3', '33세단어.mp3', '33-1.mp3', '33-2.mp3', '33-3.mp3', '33-4.mp3', '답안 입력란35.mp3',
+      '34.mp3', '34-1.mp3', '34-2.mp3', '34-3.mp3', '34-4.mp3', '답안 입력란36.mp3',
+      '35.mp3', '35-1.mp3', '35-2.mp3', '35-3.mp3', '35-4.mp3', '답안 입력란37.mp3',
+      '36.mp3', '36명제1.mp3', '36명제2.mp3', '36-1.mp3', '36-2.mp3', '36-3.mp3', '36-4.mp3', '답안 입력란38.mp3',
+      '37.mp3', '37-1.mp3', '37-2.mp3', '37-3.mp3', '37-4.mp3', '답안 입력란39.mp3',
+      '38.mp3', '38-1.mp3', '38-2.mp3', '38-3.mp3', '38-4.mp3', '답안 입력란40.mp3',
+      '39.mp3', '39-1.mp3', '39-2.mp3', '39-3.mp3', '39-4.mp3', '답안 입력란41.mp3',
+      '40.mp3', '40-1.mp3', '40-2.mp3', '40-3.mp3', '40-4.mp3', '답안 입력란42.mp3',
+      '41.mp3', '41-1.mp3', '41-2.mp3', '41-3.mp3', '41-4.mp3', '답안 입력란43.mp3',
+      '42.mp3', '42-1.mp3', '42-2.mp3', '42-3.mp3', '42-4.mp3', '답안 입력란44.mp3',
+      '43.mp3', '43-1.mp3', '43-2.mp3', '43-3.mp3', '43-4.mp3', '답안 입력란45.mp3',
+      '44.mp3', '44-1.mp3', '44-2.mp3', '44-3.mp3', '44-4.mp3', '답안 입력란46.mp3',
+      '45.mp3', '45-1.mp3', '45-2.mp3', '45-3.mp3', '45-4.mp3', '답안 입력란47.mp3',
+      '46.mp3', '46-1.mp3', '46-2.mp3', '46-3.mp3', '46-4.mp3', '답안 입력란48.mp3',
+      '47.mp3', '47-1.mp3', '47-2.mp3', '47-3.mp3', '47-4.mp3', '답안 입력란49.mp3',
+      '48.mp3', '48세단어.mp3', '48-1.mp3', '48-2.mp3', '48-3.mp3', '48-4.mp3', '답안 입력란50.mp3',
+      '49.mp3', '49-1.mp3', '49-2.mp3', '49-3.mp3', '49-4.mp3', '답안 입력란51.mp3',
+      '50.mp3', '50-1.mp3', '50-2.mp3', '50-3.mp3', '50-4.mp3', '답안 입력란52.mp3',
+      '51.mp3', '51-1.mp3', '51-2.mp3', '51-3.mp3', '51-4.mp3', '답안 입력란53.mp3',
+      '설문 지시문1.mp3', '설문 지시문2.mp3', '설문 지시문3.mp3',
+      '준거1.mp3', '답변 입력란64.mp3', '준거2.mp3', '답변 입력란65.mp3', '준거3.mp3', '답변 입력란66.mp3',
+      '준거4.mp3', '답변 입력란67.mp3', '준거5.mp3', '답변 입력란68.mp3', '준거6.mp3', '답변 입력란69.mp3',
+      '준거7.mp3', '답변 입력란70.mp3', '준거8.mp3', '답변 입력란71.mp3', '준거9.mp3', '답변 입력란72.mp3',
+      '준거10.mp3', '답변 입력란73.mp3',
+      '설문종료안내.mp3'
+    ];
+
+    function handleMouseDown(event) {
+      event.preventDefault(); // 기본 동작을 막아서 입력 커서가 blur 처리되는 것을 방지합니다.
+      // 이곳에 마우스 클릭에 대한 필요한 동작을 추가합니다.
+    }
+
+    // 마우스 우클릭 이벤트를 처리하는 함수
+    function handleContextMenu(event) {
+      event.preventDefault(); // 기본 동작을 막아서 컨텍스트 메뉴가 나타나지 않도록 합니다.
+      // 이곳에 마우스 우클릭에 대한 필요한 동작을 추가합니다.
+    }
+
+    // 전체 문서에 "mousedown" 이벤트에 대한 이벤트 리스너를 추가합니다.
+    document.addEventListener('mousedown', handleMouseDown);
+    // 전체 문서에 "contextmenu" 이벤트에 대한 이벤트 리스너를 추가합니다.
+    document.addEventListener('contextmenu', handleContextMenu);
+
+
+    let isTimerStarted = false;
+const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
+const targetIndexToMoveCursor = 346; // 제한 시간이 다 되면 이동할 인덱스
+const timerMinutes = 1; // 제한 시간 (분)
+let remainingTime = timerMinutes * 10; // 남은 시간 (초)
+
+function handleKeyDown(event) {
+  const warningAudioElement = document.getElementById('warning-audio');
+  
+  switch (event.key) {
+    case 'ArrowDown':
+      if ([349, 351, 353, 355, 357, 359, 361, 363, 365, 367].includes(currentIndex)) {
+        const inputId = `criteria${(currentIndex - 349) / 2 + 1}`;
+        const inputValue = document.getElementById(inputId).value;
+        if (!inputValue) {
+          warningAudioElement.play(); // 경고음 재생
+          return; // 답이 입력되지 않았으면 여기서 함수 종료
+        } else {
+          warningAudioElement.pause(); // 경고음 정지
+          warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
+        }
+      }
+      currentIndex++;
+      limitCurrentIndex();
+      playAudio(audioFiles[currentIndex]);
+      if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
+        startTimer();
+        isTimerStarted = true;
+      }
+      // 427번 인덱스 셀에 도착했을 때 서버로 데이터 전송
+      if (currentIndex === 368) {
+        submitAnswersAndTimeToServer(); // 데이터 전송 함수 호출
+      }
+      break;
+    case 'ArrowUp':
+      if (currentIndex !== 346 && currentIndex !== 32) { // 405번 or 30번 인덱스 셀이 아닌 경우에만 작동하도록 조건 추가
+        currentIndex--;
+        limitCurrentIndex();
+        playAudio(audioFiles[currentIndex]);
+        if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
+          startTimer();
+          isTimerStarted = true;
+        }
+      }
+      break;
+    case 'ArrowLeft':
+      audioPlayer.currentTime = 0;
+      audioPlayer.play();
+      break;
+    case 'ArrowRight':
+      audioPlayer.currentTime = 0;
+      audioPlayer.play();
+      break;
+      case ' ': // 스페이스바
+  event.preventDefault(); // 스크롤링 방지
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+  } else {
+    audioPlayer.pause();
+  }
+  break;
+  }
+  updateSelectedCell();
+}
+
+let timerInterval; // 타이머 인터벌을 저장하는 변수
+
+function startTimer() {
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+  remainingTime--; // 1초 감소
+  const timerDisplay = document.getElementById('timer');
+  const minutes = Math.floor(remainingTime / 60);
+  const seconds = remainingTime % 60;
+
+  timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+  if (remainingTime === 0) {
+    clearInterval(timerInterval); // 타이머 중지
+    currentIndex = targetIndexToMoveCursor; // 405 셀로 이동
+    currentProblem = targetIndexToMoveCursor; // currentProblem도 405로 업데이트
+    limitCurrentIndex();
+    updateSelectedCell();
+    playAudio(audioFiles[currentIndex]); // 405 셀의 MP3 파일 재생
+
+    // 반응시간 타이머 종료
+    clearInterval(interval);
+  }
+}
+
+
+    function displayEndMessage() {
+      const endMessage = document.getElementById('message');
+      endMessage.style.display = 'block';
+    }
+
+    function disableKeyboardInput() {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+    function limitCurrentIndex() {
+      currentIndex = Math.max(0, Math.min(currentIndex, 368));//셀 이동 제한(마지막 인덱스-1)
+    }
+
+    const targetIndex = 346; // 이 인덱스까지 타이머 잼
+
+    function playAudio(filename) {
+  const warningAudioElement = document.getElementById('warning-audio');
+  stopWarningAudio(warningAudioElement); // 경고음 정지
+      const audioIndex = audioFiles.indexOf(filename);
+      if (audioIndex !== -1) {
+        currentIndex = audioIndex;
+        limitCurrentIndex();
+        updateSelectedCell();
+        audioPlayer.src = filename;
+        audioPlayer.play();
+
+        if (isAnswerCell(audioIndex)) {
+          enableAnswerInput(answerIndexToInputIndex(audioIndex));
+        }
+
+        // 특정 인덱스에 도달했을 때 endTime 변수 설정
+        if (currentIndex === targetIndex) {
+          endTime = Date.now();
+        }
+      }
+    }
+
+
+
+    var responseTimes = Array(53).fill(0);
+var currentProblem = 0;
+var currentGroup = 0;
+var interval;
+var responseStartTime; // 반응시간 타이머의 시작 시간을 저장하는 변수
+
+// 반응시간 그룹을 정의합니다. 각 인덱스는 그룹이 끝나는 지점을 나타냅니다.
+var groups = [29, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 
+      97, 105, 111, 117, 123, 129, 135, 142, 148, 154,
+      160, 166, 172, 178, 184, 190, 196, 202, 208, 214, 
+      220, 226, 233, 239, 245, 253, 259, 265, 271, 277,
+      283, 289, 295, 301, 307, 313, 319, 326, 332, 338, 
+      344, 345];
+
+// 반응시간 타이머 시작
+
+function startResponseTimer() {
+  clearInterval(interval);
+  responseStartTime = new Date(); // 반응시간 타이머 시작 시간 설정
+  interval = setInterval(function () {
+    var now = new Date();
+    responseTimes[currentGroup] = (now - responseStartTime) / 1000; // 초 단위로 계산
+    console.log("그룹 " + currentGroup + "의 반응시간: " + responseTimes[currentGroup].toFixed(2) + "초"); // 소수점 두 자리까지 표시
+  }, 10); // 0.01초마다 실행
+}
+
+// 위/아래 방향키로 문제 이동
+window.addEventListener("keydown", function (event) {
+  var newProblemIndex = currentProblem;
+  if (event.key === "ArrowUp" && currentProblem > 0 && currentProblem !== 346 && currentProblem !== 32) {
+    newProblemIndex--;
+  } else if (event.key === "ArrowDown") {
+    newProblemIndex++;
+  }
+
+  var newGroupIndex = -1;
+  for (var i = 0; i < groups.length; i++) {
+    if (groups[i] >= newProblemIndex) {
+      newGroupIndex = i;
+      break;
+    }
+  }
+
+  // 그룹이 바뀌면 반응시간 타이머를 업데이트합니다.
+  if (newGroupIndex !== -1 && newGroupIndex !== currentGroup) {
+    currentGroup = newGroupIndex;
+    startResponseTimer();
+  }
+
+  // 404 인덱스를 넘어가면 반응시간 타이머를 종료합니다.
+  if (newProblemIndex > 345) {
+    clearInterval(interval);
+  }
+
+  currentProblem = newProblemIndex;
+});
+
+// 첫 번째 반응시간 타이머 시작
+startResponseTimer();
+
+
+    const answerCellIndices = [3, 4, 5, 22, 28,
+      37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 
+      97, 105, 111, 117, 123, 129, 135, 142, 148, 154,
+      160, 166, 172, 178, 184, 190, 196, 202, 208, 214, 
+      220, 226, 233, 239, 245, 253, 259, 265, 271, 277,
+      283, 289, 295, 301, 307, 313, 319, 326, 332, 338, 
+      344, 349, 351, 353, 355, 357, 359, 361, 363, 365, 367];
+
+    function isAnswerCell(index) {
+      return answerCellIndices.includes(index);
+    }
+
+    function answerIndexToInputIndex(answerIndex) {
+      const inputIndex = answerCellIndices.indexOf(answerIndex);
+      return inputIndex !== -1 ? inputIndex : 0;
+    }
+
+
+    function updateSelectedCell() {
+      const cells = document.getElementsByTagName("td");
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("selected");
+      }
+      cells[currentIndex].classList.add("selected");
+    }
+
+    function enableAnswerInput(answerInputIndex) {
+      const answerInputs = document.querySelectorAll('input[type="text"]');
+      const currentAnswerInput = answerInputs[answerInputIndex];
+
+      answerInputs.forEach(input => {
+        input.readOnly = true;
+      });
+
+      currentAnswerInput.removeAttribute("readonly");
+      currentAnswerInput.focus();
+    }
+
+    const personalMaxLengths = {
+      personal: 3, // answer64에 대한 최대 글자 수
+      sex: 1, // answer65에 대한 최대 글자 수
+      yymmdd: 6  // answer66에 대한 최대 글자 수
+    };
+
+    // 숫자를 읽어주는 함수
+    function readNumber(number) { }
+
+    function handleInputKeydown(event, answerId) {
+  const input = document.getElementById(answerId);
+
+  // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
+  const maxLength = personalMaxLengths[answerId];
+
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    event.preventDefault();
+    playAudio(audioFiles[currentIndex]); // 현재 문제에 대한 오디오를 재생합니다.
+    return;
+  }
+
+  if (event.key === 'ArrowDown') {
+    if ([349, 351, 353, 355, 357, 359, 361, 363, 365, 367].includes(currentIndex) && !input.value) {
+      return; // 답변이 입력되지 않았다면 아래 방향키를 눌러도 블러 처리하지 않음
+    }
+    event.preventDefault();
+    input.blur();
+  } else if (!maxLength && event.key >= '0' && event.key <= '9') {
+    if ([347, 349, 351, 353, 355, 357, 359, 361, 363, 365].includes(currentIndex)) {
+      input.value = ""; // 덮어쓰기 기능 유지
+    }
+    readNumber(event.key); // 숫자를 읽어주는 함수 호출
+    playCustomAudio(event.key); // 숫자에 해당하는 MP3 파일 재생
+  } else if (event.key === ' ') {
+    event.preventDefault();
+  } else if (event.key === 'Backspace') {
+    if (input.value.length > 0) {
+      input.value = input.value.slice(0, -1);
+      readNumber(input.value);
+    }
+    event.preventDefault();
+  } else if (!maxLength && (input.value.length >= 1 || isNaN(parseInt(event.key)))) {
+    event.preventDefault();
+  } else if (maxLength && (input.value.length >= maxLength || isNaN(parseInt(event.key)))) {
+    event.preventDefault();
+  } else {
+    readNumber(input.value + event.key);
+    readNumber(event.key);
+    playCustomAudio(event.key);
+  }
+
+
+
+  function playCustomAudio(number) {
+  const warningAudioElement = document.getElementById('warning-audio');
+  stopWarningAudio(warningAudioElement); // 경고음 정지
+        switch (number) {
+          case '1':
+            audioPlayer.src = '일.mp3';
+            break;
+          case '2':
+            audioPlayer.src = '이.mp3';
+            break;
+          case '3':
+            audioPlayer.src = '삼.mp3';
+            break;
+          case '4':
+            audioPlayer.src = '사.mp3';
+            break;
+          case '5':
+            audioPlayer.src = '오.mp3';
+            break;
+          case '6':
+            audioPlayer.src = '육.mp3';
+            break;
+          case '7':
+            audioPlayer.src = '칠.mp3';
+            break;
+          case '8':
+            audioPlayer.src = '팔.mp3';
+            break;
+          case '9':
+            audioPlayer.src = '구.mp3';
+            break;
+          case '0':
+            audioPlayer.src = '공.mp3';
+            break;
+          default:
+            audioPlayer.src = ''; // 숫자 이외의 입력에는 MP3 재생하지 않음
+        }
+        audioPlayer.play();
+      }
+      input.selectionStart = input.value.length;
+      input.selectionEnd = input.value.length;
+    }
+
+    function stopWarningAudio(warningAudioElement) {
+  warningAudioElement.pause(); // 경고음 정지
+  warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
+}
+
+    // 수정된 handleInputFocus 함수
+    function handleInputFocus(event) {
+      event.target.addEventListener('keypress', (e) => {
+        if (e.charCode >= 48 && e.charCode <= 57) {
+          event.target.value = '';
+          e.target.removeEventListener(e.type, arguments.callee);
+        }
+      });
+    }
+
+    // 각 'input' 요소에 'handleInputFocus' 이벤트 핸들러를 추가합니다. 'answer0'에는 추가하지 않습니다.
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      if (!personalMaxLengths[input.id]) {
+        input.addEventListener('focus', handleInputFocus);
+      }
+    });
+
+
+
+    let accessTime = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }); // 한국 시간으로 페이지에 접속한 정확한 날짜와 시간을 저장합니다.
+
+
+    // 서버로 답변과 시간을 전송하는 함수
+    function submitAnswersAndTimeToServer() {
+  if (!formSubmitted) {
+    formSubmitted = true;
+
+    const answerInputs = Array.from(document.querySelectorAll('input[type="text"]'));
+    const criteriaInputs = Array.from(document.querySelectorAll('.criteria-input'));
+    const criteria = criteriaInputs.map(input => input.value);
+  
+
+    // 기존 코드에서 필요한 변수를 가져오는 부분은 그대로 둘게
+    const personalInput = answerInputs.findIndex(input => input.id === 'personal');
+    const sexInput = answerInputs.findIndex(input => input.id === 'sex');
+    const yymmddInput = answerInputs.findIndex(input => input.id === 'yymmdd');
+    const otherInputs = answerInputs.filter((_, index) => ![personalInput, sexInput, yymmddInput].includes(index));
+    const answers = otherInputs.map(input => input.value);
+    const personal = answerInputs[personalInput].value;
+    const sex = answerInputs[sexInput].value;
+    const yymmdd = answerInputs[yymmddInput].value;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/submit', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        console.log('답변과 접속 시간이 제출되었습니다.');
+      } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
+        console.error('답변과 접속 시간 제출 중 오류가 발생했습니다.');
+      }
+    };
+
+    // answers 배열과 elapsedTime, accessTime, personal, sex, yymmdd, criteriaAnswers 변수를 JSON 형태로 서버로 전송
+    xhr.send(JSON.stringify({ answers, accessTime, personal, sex, yymmdd, criteria, responseTimes }));
+  }
+}
+
+
+    // window의 onbeforeunload 이벤트 핸들러 등록
+    window.onbeforeunload = function () {
+      // 서버로 답변과 시간을 전송하는 함수 호출
+      submitAnswersAndTimeToServer();
+    };
+
+    window.addEventListener('beforeunload', function (event) {
+      // 웹페이지를 닫기 전에 서버로 답변을 전송하는 함수 호출
+      submitAnswersAndTimeToServer();
+    });
+
+    playAudio(audioFiles[currentIndex]);
+    document.addEventListener('keydown', handleKeyDown);
+  </script>
+</body>
+
+</html>
