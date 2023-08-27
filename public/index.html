@@ -91,7 +91,7 @@
       <tr>
         <td class="selected">아이디
           <input type="text" id="personal" onclick="enableAnswerInput('personal')"
-            onkeydown="handleInputKeydown(event, 'personal')" autocomplete="off"  readonly >
+            onkeydown="handleInputKeydown(event, 'personal')" autocomplete="off" style="color: transparent;">
           <audio id="audio54" controls style="display: none;">
             <source src="개인정보1.mp3" type="audio/mpeg">
           </audio>
@@ -1930,7 +1930,13 @@ startResponseTimer();
 
     function handleInputKeydown(event, answerId) {
   const input = document.getElementById(answerId);
-
+    // 350, 352, ... , 368 인덱스 셀에 대한 조건
+if ([350, 352, 354, 356, 358, 360, 362, 364, 366, 368].includes(currentIndex)) {
+    if (event.key < '1' || event.key > '5') {
+      event.preventDefault(); // 1~5 외의 키는 입력되지 않도록 함
+      return;
+    }
+  }
   // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
   const maxLength = personalMaxLengths[answerId];
 
@@ -1970,6 +1976,18 @@ startResponseTimer();
     playCustomAudio(event.key);
   }
 
+  // 22, 28, ... , 345 인덱스 셀에 대한 조건
+  if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+      98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+      221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+      345].includes(currentIndex)) {
+    if (event.key < '1' || event.key > '4') {
+      event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
+      return;
+    }
+  }
 
 
   function playCustomAudio(number) {
@@ -2078,7 +2096,15 @@ startResponseTimer();
     xhr.send(JSON.stringify({ answers, accessTime, personal, sex, yymmdd, criteria, responseTimes }));
   }
 }
-
+window.onload = function() {
+  const savedData = localStorage.getItem('savedData');
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    // parsedData 안에는 answers, accessTime, personal, sex, yymmdd, criteria, responseTimes 가 들어있을 것이다.
+    // 이 데이터를 서버로 전송하는 로직을 여기에 추가한다.
+    // 예: ajax 요청이나 fetch 사용
+  }
+}
 
     // window의 onbeforeunload 이벤트 핸들러 등록
     window.onbeforeunload = function () {
