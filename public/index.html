@@ -1990,7 +1990,10 @@
           return;
         }
       }
-
+      if ([352, 354, 356, 358, 360, 362, 364, 366, 368, 370, 372].includes(currentIndex)) {
+  event.preventDefault(); // 아무 키도 입력되지 않도록 함
+  return; // 여기서 return 해서 아래의 playCustomAudio가 호출되지 않도록 함
+}
 
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
