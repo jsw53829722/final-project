@@ -74,8 +74,6 @@
 <body>
   <div id="timer" style="font-size: 24px; font-weight: bold; text-align: center; margin-top: 10px;"></div>
 
-  <div id="message" style="font-size: 36px; font-weight: bold; text-align: center; margin-top: 20px; display: none;">
-    시험이 종료되었습니다.
   </div>
   <div id="table-container">
     <table>
@@ -1774,14 +1772,17 @@ function handleKeyDown(event) {
       audioPlayer.currentTime = 0;
       audioPlayer.play();
       break;
-      case ' ': // 스페이스바
-  event.preventDefault(); // 스크롤링 방지
-  if (audioPlayer.paused) {
-    audioPlayer.play();
-  } else {
-    audioPlayer.pause();
-  }
-  break;
+      case ' ':
+      event.preventDefault();
+      if (!audioPlayer.src) {
+        audioPlayer.src = audioFiles[currentIndex];
+      }
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        audioPlayer.pause();
+      }
+      break;
   }
   if (currentIndex === newTargetIndexToStartTimer && !isNewTimerStarted) {
     startNewTimer();
@@ -1972,13 +1973,30 @@ startResponseTimer();
 
     function handleInputKeydown(event, answerId) {
   const input = document.getElementById(answerId);
-    // 350, 352, ... , 368 인덱스 셀에 대한 조건
-if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
+
+  let shouldPlayCustomAudio = true;  // 이 변수를 추가해서 커스텀 오디오 재생을 결정
+
+  if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
     if (event.key < '1' || event.key > '5') {
-      event.preventDefault(); // 1~5 외의 키는 입력되지 않도록 함
+      event.preventDefault();
+      shouldPlayCustomAudio = false;  // 커스텀 오디오 재생 안 함
       return;
     }
   }
+
+  if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+    98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+    161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+    221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+    284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+    345].includes(currentIndex)) {
+  if (event.key < '1' || event.key > '4') {
+    event.preventDefault();
+    shouldPlayCustomAudio = false;  // 이 부분을 추가
+    return;
+  }
+}
+
   // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
   const maxLength = personalMaxLengths[answerId];
 
@@ -2018,19 +2036,7 @@ if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
     playCustomAudio(event.key);
   }
 
-  // 22, 28, ... , 345 인덱스 셀에 대한 조건
-  if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
-      98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
-      221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
-      345].includes(currentIndex)) {
-    if (event.key < '1' || event.key > '4') {
-      event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
-      return;
-    }
-  }
-
+   
 
   function playCustomAudio(number) {
   const warningAudioElement = document.getElementById('warning-audio');
@@ -2158,8 +2164,7 @@ window.onload = function() {
       // 웹페이지를 닫기 전에 서버로 답변을 전송하는 함수 호출
       submitAnswersAndTimeToServer();
     });
-
-    playAudio(audioFiles[currentIndex]);
+ 
     document.addEventListener('keydown', handleKeyDown);
   </script>
 </body>
