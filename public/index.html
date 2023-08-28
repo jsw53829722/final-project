@@ -2125,11 +2125,7 @@
 
 
     let accessTime = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }); // 한국 시간으로 페이지에 접속한 정확한 날짜와 시간을 저장합니다.
-    // 주기적으로 자동 저장하는 로직
-    setInterval(function () {
-      const dataToSave = { /* 여기에 저장할 데이터를 넣는다 */ };
-      localStorage.setItem('savedData', JSON.stringify(dataToSave));
-    }, 30000);  // 예: 30초마다 저장
+    
 
 
     // 서버로 답변과 시간을 전송하는 함수
