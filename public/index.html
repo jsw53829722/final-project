@@ -1975,31 +1975,19 @@ startResponseTimer();
 
     function handleInputKeydown(event, answerId) {
   const input = document.getElementById(answerId);
-    // 350, 352, ... , 368 인덱스 셀에 대한 조건
+    
+  // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
+  const maxLength = personalMaxLengths[answerId];
+
+// 350, 352, ... , 368 인덱스 셀에 대한 조건
 if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
     if (event.key < '1' || event.key > '5') {
       event.preventDefault(); // 1~5 외의 키는 입력되지 않도록 함
       return;
     }
   }
-// 22, 28, ... , 345 인덱스 셀에 대한 조건
-if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
-      98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
-      221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
-      345].includes(currentIndex)) {
-    if (event.key < '1' || event.key > '4') {
-      event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
-      return;
-    }
-  }
 
-
-
-  // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
-  const maxLength = personalMaxLengths[answerId];
-
+  
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     event.preventDefault();
     playAudio(audioFiles[currentIndex]); // 현재 문제에 대한 오디오를 재생합니다.
@@ -2036,11 +2024,36 @@ if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
     playCustomAudio(event.key);
   }
 
+  // 22, 28, ... , 345 인덱스 셀에 대한 조건
+  if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+      98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+      221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+      345].includes(currentIndex)) {
+    if (event.key < '1' || event.key > '4') {
+      event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
+      return;
+    }
+  }
+
 
   function playCustomAudio(number) {
   const warningAudioElement = document.getElementById('warning-audio');
   stopWarningAudio(warningAudioElement); // 경고음 정지
-        switch (number) {
+  if (
+    ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) && 
+    ['0', '6', '7', '8', '9'].includes(number)) ||
+    ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+    98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+    161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+    221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+    284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+    345].includes(currentIndex) && 
+    ['0', '5', '6', '7', '8', '9'].includes(number))
+  ) {
+    audioPlayer.src = ''; // 재생하지 않음
+  } else {switch (number) {
           case '1':
             audioPlayer.src = '일.mp3';
             break;
@@ -2079,7 +2092,7 @@ if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
       input.selectionStart = input.value.length;
       input.selectionEnd = input.value.length;
     }
-
+  }
     function stopWarningAudio(warningAudioElement) {
   warningAudioElement.pause(); // 경고음 정지
   warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
