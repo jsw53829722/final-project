@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>시험 페이지</title>
-    <div id="timer"></div>
+  <title>시험 페이지</title>
+  <div id="new-timer"></div>
 
   <style>
     /* 중앙 정렬을 위한 스타일 */
@@ -51,16 +51,21 @@
 
     /* 타이머 고정 스타일 추가 */
     #timer {
-  position: fixed; /* 고정 위치 설정 */
-  top: 0;          /* 상단에서 0px 떨어진 위치 */
-  left: 0;         /* 왼쪽에서 0px 떨어진 위치 */
-  z-index: 9999;   /* 다른 요소 위에 나타나도록 z-index 설정 */
-}
-#timer {
+      position: fixed;
+      /* 고정 위치 설정 */
+      top: 0;
+      /* 상단에서 0px 떨어진 위치 */
+      left: 0;
+      /* 왼쪽에서 0px 떨어진 위치 */
+      z-index: 9999;
+      /* 다른 요소 위에 나타나도록 z-index 설정 */
+    }
+
+    #timer {
       display: none;
     }
 
-    
+
 
     html,
     body {
@@ -68,7 +73,7 @@
       /* 전체 페이지에 대한 마우스 이벤트 비활성화 */
     }
   </style>
-  
+
 </head>
 
 <body>
@@ -100,7 +105,7 @@
       <tr>
         <td class="selected">성별
           <input type="text" id="sex" onclick="enableAnswerInput('sex')" onkeydown="handleInputKeydown(event, 'sex')"
-            autocomplete="off"  >
+            autocomplete="off">
           <audio id="audio55" controls style="display: none;">
             <source src="개인정보2.mp3" type="audio/mpeg">
           </audio>
@@ -109,7 +114,7 @@
       <tr>
         <td class="selected">생년월일
           <input type="text" id="yymmdd" onclick="enableAnswerInput('yymmdd')"
-            onkeydown="handleInputKeydown(event, 'yymmdd')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'yymmdd')" autocomplete="off">
           <audio id="audio56" controls style="display: none;">
             <source src="개인정보3.mp3" type="audio/mpeg">
           </audio>
@@ -166,7 +171,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer1" onclick="enableAnswerInput('answer1')"
-            onkeydown="handleInputKeydown(event, 'answer1')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer1')" autocomplete="off">
           <audio id="audio1" controls style="display: none;">
             <source src="답안 입력란1.mp3" type="audio/mpeg">
           </audio>
@@ -190,7 +195,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer2" onclick="enableAnswerInput('answer2')"
-            onkeydown="handleInputKeydown(event, 'answer2')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer2')" autocomplete="off">
           <audio id="audio1" controls style="display: none;">
             <source src="답안 입력란2.mp3" type="audio/mpeg">
           </audio>
@@ -223,7 +228,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer3" onclick="enableAnswerInput('answer3')"
-            onkeydown="handleInputKeydown(event, 'answer3')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer3')" autocomplete="off">
           <audio id="audio3" controls style="display: none;">
             <source src="답안 입력란3.mp3" type="audio/mpeg">
           </audio>
@@ -247,7 +252,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer4" onclick="enableAnswerInput('answer4')"
-            onkeydown="handleInputKeydown(event, 'answer4')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer4')" autocomplete="off">
           <audio id="audio4" controls style="display: none;">
             <source src="답안 입력란4.mp3" type="audio/mpeg">
           </audio>
@@ -271,7 +276,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer5" onclick="enableAnswerInput('answer5')"
-            onkeydown="handleInputKeydown(event, 'answer5')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer5')" autocomplete="off">
           <audio id="audio5" controls style="display: none;">
             <source src="답안 입력란5.mp3" type="audio/mpeg">
           </audio>
@@ -295,7 +300,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer6" onclick="enableAnswerInput('answer6')"
-            onkeydown="handleInputKeydown(event, 'answer6')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer6')" autocomplete="off">
           <audio id="audio6" controls style="display: none;">
             <source src="답안 입력란6.mp3" type="audio/mpeg">
           </audio>
@@ -319,7 +324,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer7" onclick="enableAnswerInput('answer7')"
-            onkeydown="handleInputKeydown(event, 'answer7')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer7')" autocomplete="off">
           <audio id="audio7" controls style="display: none;">
             <source src="답안 입력란7.mp3" type="audio/mpeg">
           </audio>
@@ -346,7 +351,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer8" onclick="enableAnswerInput('answer8')"
-            onkeydown="handleInputKeydown(event, 'answer8')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer8')" autocomplete="off">
           <audio id="audio8" controls style="display: none;">
             <source src="답안 입력란8.mp3" type="audio/mpeg">
           </audio>
@@ -370,7 +375,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer9" onclick="enableAnswerInput('answer9')"
-            onkeydown="handleInputKeydown(event, 'answer9')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer9')" autocomplete="off">
           <audio id="audio9" controls style="display: none;">
             <source src="답안 입력란9.mp3" type="audio/mpeg">
           </audio>
@@ -394,7 +399,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer10" onclick="enableAnswerInput('answer10')"
-            onkeydown="handleInputKeydown(event, 'answer10')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer10')" autocomplete="off">
           <audio id="audio10" controls style="display: none;">
             <source src="답안 입력란10.mp3" type="audio/mpeg">
           </audio>
@@ -418,7 +423,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer11" onclick="enableAnswerInput('answer11')"
-            onkeydown="handleInputKeydown(event, 'answer11')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer11')" autocomplete="off">
           <audio id="audio11" controls style="display: none;">
             <source src="답안 입력란11.mp3" type="audio/mpeg">
           </audio>
@@ -442,7 +447,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer12" onclick="enableAnswerInput('answer12')"
-            onkeydown="handleInputKeydown(event, 'answer12')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer12')" autocomplete="off">
           <audio id="audio12" controls style="display: none;">
             <source src="답안 입력란12.mp3" type="audio/mpeg">
           </audio>
@@ -466,7 +471,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer13" onclick="enableAnswerInput('answer13')"
-            onkeydown="handleInputKeydown(event, 'answer13')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer13')" autocomplete="off">
           <audio id="audio13" controls style="display: none;">
             <source src="답안 입력란13.mp3" type="audio/mpeg">
           </audio>
@@ -496,7 +501,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer14" onclick="enableAnswerInput('answer14')"
-            onkeydown="handleInputKeydown(event, 'answer14')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer14')" autocomplete="off">
           <audio id="audio14" controls style="display: none;">
             <source src="답안 입력란14.mp3" type="audio/mpeg">
           </audio>
@@ -520,7 +525,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer15" onclick="enableAnswerInput('answer15')"
-            onkeydown="handleInputKeydown(event, 'answer15')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer15')" autocomplete="off">
           <audio id="audio15" controls style="display: none;">
             <source src="답안 입력란15.mp3" type="audio/mpeg">
           </audio>
@@ -544,7 +549,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer16" onclick="enableAnswerInput('answer16')"
-            onkeydown="handleInputKeydown(event, 'answer16')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer16')" autocomplete="off">
           <audio id="audio16" controls style="display: none;">
             <source src="답안 입력란16.mp3" type="audio/mpeg">
           </audio>
@@ -568,7 +573,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer17" onclick="enableAnswerInput('answer17')"
-            onkeydown="handleInputKeydown(event, 'answer17')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer17')" autocomplete="off">
           <audio id="audio17" controls style="display: none;">
             <source src="답안 입력란17.mp3" type="audio/mpeg">
           </audio>
@@ -592,7 +597,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer18" onclick="enableAnswerInput('answer18')"
-            onkeydown="handleInputKeydown(event, 'answer18')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer18')" autocomplete="off">
           <audio id="audio18" controls style="display: none;">
             <source src="답안 입력란18.mp3" type="audio/mpeg">
           </audio>
@@ -616,7 +621,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer19" onclick="enableAnswerInput('answer19')"
-            onkeydown="handleInputKeydown(event, 'answer19')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer19')" autocomplete="off">
           <audio id="audio19" controls style="display: none;">
             <source src="답안 입력란19.mp3" type="audio/mpeg">
           </audio>
@@ -643,7 +648,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer20" onclick="enableAnswerInput('answer20')"
-            onkeydown="handleInputKeydown(event, 'answer20')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer20')" autocomplete="off">
           <audio id="audio20" controls style="display: none;">
             <source src="답안 입력란20.mp3" type="audio/mpeg">
           </audio>
@@ -667,7 +672,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer21" onclick="enableAnswerInput('answer21')"
-            onkeydown="handleInputKeydown(event, 'answer21')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer21')" autocomplete="off">
           <audio id="audio21" controls style="display: none;">
             <source src="답안 입력란21.mp3" type="audio/mpeg">
           </audio>
@@ -691,7 +696,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer22" onclick="enableAnswerInput('answer22')"
-            onkeydown="handleInputKeydown(event, 'answer22')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer22')" autocomplete="off">
           <audio id="audio22" controls style="display: none;">
             <source src="답안 입력란22.mp3" type="audio/mpeg">
           </audio>
@@ -715,7 +720,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer23" onclick="enableAnswerInput('answer23')"
-            onkeydown="handleInputKeydown(event, 'answer23')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer23')" autocomplete="off">
           <audio id="audio23" controls style="display: none;">
             <source src="답안 입력란23.mp3" type="audio/mpeg">
           </audio>
@@ -739,7 +744,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer24" onclick="enableAnswerInput('answer24')"
-            onkeydown="handleInputKeydown(event, 'answer24')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer24')" autocomplete="off">
           <audio id="audio24" controls style="display: none;">
             <source src="답안 입력란24.mp3" type="audio/mpeg">
           </audio>
@@ -763,7 +768,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer25" onclick="enableAnswerInput('answer25')"
-            onkeydown="handleInputKeydown(event, 'answer25')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer25')" autocomplete="off">
           <audio id="audio25" controls style="display: none;">
             <source src="답안 입력란25.mp3" type="audio/mpeg">
           </audio>
@@ -787,7 +792,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer26" onclick="enableAnswerInput('answer26')"
-            onkeydown="handleInputKeydown(event, 'answer26')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer26')" autocomplete="off">
           <audio id="audio26" controls style="display: none;">
             <source src="답안 입력란26.mp3" type="audio/mpeg">
           </audio>
@@ -811,7 +816,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer27" onclick="enableAnswerInput('answer27')"
-            onkeydown="handleInputKeydown(event, 'answer27')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer27')" autocomplete="off">
           <audio id="audio27" controls style="display: none;">
             <source src="답안 입력란27.mp3" type="audio/mpeg">
           </audio>
@@ -835,7 +840,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer28" onclick="enableAnswerInput('answer28')"
-            onkeydown="handleInputKeydown(event, 'answer28')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer28')" autocomplete="off">
           <audio id="audio28" controls style="display: none;">
             <source src="답안 입력란28.mp3" type="audio/mpeg">
           </audio>
@@ -859,7 +864,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer29" onclick="enableAnswerInput('answer29')"
-            onkeydown="handleInputKeydown(event, 'answer29')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer29')" autocomplete="off">
           <audio id="audio29" controls style="display: none;">
             <source src="답안 입력란29.mp3" type="audio/mpeg">
           </audio>
@@ -883,7 +888,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer30" onclick="enableAnswerInput('answer30')"
-            onkeydown="handleInputKeydown(event, 'answer30')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer30')" autocomplete="off">
           <audio id="audio30" controls style="display: none;">
             <source src="답안 입력란30.mp3" type="audio/mpeg">
           </audio>
@@ -907,7 +912,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer31" onclick="enableAnswerInput('answer31')"
-            onkeydown="handleInputKeydown(event, 'answer31')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer31')" autocomplete="off">
           <audio id="audio31" controls style="display: none;">
             <source src="답안 입력란31.mp3" type="audio/mpeg">
           </audio>
@@ -931,7 +936,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer32" onclick="enableAnswerInput('answer32')"
-            onkeydown="handleInputKeydown(event, 'answer32')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer32')" autocomplete="off">
           <audio id="audio32" controls style="display: none;">
             <source src="답안 입력란2.mp3" type="audio/mpeg">
           </audio>
@@ -955,7 +960,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer33" onclick="enableAnswerInput('answer33')"
-            onkeydown="handleInputKeydown(event, 'answer33')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer33')" autocomplete="off">
           <audio id="audio33" controls style="display: none;">
             <source src="답안 입력란33.mp3" type="audio/mpeg">
           </audio>
@@ -979,7 +984,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer34" onclick="enableAnswerInput('answer34')"
-            onkeydown="handleInputKeydown(event, 'answer34')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer34')" autocomplete="off">
           <audio id="audio34" controls style="display: none;">
             <source src="답안 입력란34.mp3" type="audio/mpeg">
           </audio>
@@ -1006,7 +1011,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer35" onclick="enableAnswerInput('answer35')"
-            onkeydown="handleInputKeydown(event, 'answer35')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer35')" autocomplete="off">
           <audio id="audio35" controls style="display: none;">
             <source src="답안 입력란35.mp3" type="audio/mpeg">
           </audio>
@@ -1030,7 +1035,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer36" onclick="enableAnswerInput('answer36')"
-            onkeydown="handleInputKeydown(event, 'answer36')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer36')" autocomplete="off">
           <audio id="audio36" controls style="display: none;">
             <source src="답안 입력란36.mp3" type="audio/mpeg">
           </audio>
@@ -1054,7 +1059,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer37" onclick="enableAnswerInput('answer37')"
-            onkeydown="handleInputKeydown(event, 'answer37')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer37')" autocomplete="off">
           <audio id="audio37" controls style="display: none;">
             <source src="답안 입력란37.mp3" type="audio/mpeg">
           </audio>
@@ -1084,7 +1089,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer38" onclick="enableAnswerInput('answer38')"
-            onkeydown="handleInputKeydown(event, 'answer38')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer38')" autocomplete="off">
           <audio id="audio38" controls style="display: none;">
             <source src="답안 입력란38.mp3" type="audio/mpeg">
           </audio>
@@ -1108,7 +1113,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer39" onclick="enableAnswerInput('answer39')"
-            onkeydown="handleInputKeydown(event, 'answer39')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer39')" autocomplete="off">
           <audio id="audio39" controls style="display: none;">
             <source src="답안 입력란39.mp3" type="audio/mpeg">
           </audio>
@@ -1132,7 +1137,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer40" onclick="enableAnswerInput('answer40')"
-            onkeydown="handleInputKeydown(event, 'answer40')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer40')" autocomplete="off">
           <audio id="audio40" controls style="display: none;">
             <source src="답안 입력란40.mp3" type="audio/mpeg">
           </audio>
@@ -1156,7 +1161,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer41" onclick="enableAnswerInput('answer41')"
-            onkeydown="handleInputKeydown(event, 'answer41')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer41')" autocomplete="off">
           <audio id="audio41" controls style="display: none;">
             <source src="답안 입력란41.mp3" type="audio/mpeg">
           </audio>
@@ -1180,7 +1185,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer42" onclick="enableAnswerInput('answer42')"
-            onkeydown="handleInputKeydown(event, 'answer42')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer42')" autocomplete="off">
           <audio id="audio42" controls style="display: none;">
             <source src="답안 입력란42.mp3" type="audio/mpeg">
           </audio>
@@ -1204,7 +1209,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer43" onclick="enableAnswerInput('answer43')"
-            onkeydown="handleInputKeydown(event, 'answer43')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer43')" autocomplete="off">
           <audio id="audio43" controls style="display: none;">
             <source src="답안 입력란43.mp3" type="audio/mpeg">
           </audio>
@@ -1228,7 +1233,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer44" onclick="enableAnswerInput('answer44')"
-            onkeydown="handleInputKeydown(event, 'answer44')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer44')" autocomplete="off">
           <audio id="audio44" controls style="display: none;">
             <source src="답안 입력란44.mp3" type="audio/mpeg">
           </audio>
@@ -1252,7 +1257,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer45" onclick="enableAnswerInput('answer45')"
-            onkeydown="handleInputKeydown(event, 'answer45')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer45')" autocomplete="off">
           <audio id="audio45" controls style="display: none;">
             <source src="답안 입력란45.mp3" type="audio/mpeg">
           </audio>
@@ -1276,7 +1281,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer46" onclick="enableAnswerInput('answer46')"
-            onkeydown="handleInputKeydown(event, 'answer46')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer46')" autocomplete="off">
           <audio id="audio46" controls style="display: none;">
             <source src="답안 입력란46.mp3" type="audio/mpeg">
           </audio>
@@ -1300,7 +1305,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer47" onclick="enableAnswerInput('answer47')"
-            onkeydown="handleInputKeydown(event, 'answer47')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer47')" autocomplete="off">
           <audio id="audio47" controls style="display: none;">
             <source src="답안 입력란47.mp3" type="audio/mpeg">
           </audio>
@@ -1324,7 +1329,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer48" onclick="enableAnswerInput('answer48')"
-            onkeydown="handleInputKeydown(event, 'answer48')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer48')" autocomplete="off">
           <audio id="audio48" controls style="display: none;">
             <source src="답안 입력란48.mp3" type="audio/mpeg">
           </audio>
@@ -1348,7 +1353,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer49" onclick="enableAnswerInput('answer49')"
-            onkeydown="handleInputKeydown(event, 'answer49')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer49')" autocomplete="off">
           <audio id="audio49" controls style="display: none;">
             <source src="답안 입력란49.mp3" type="audio/mpeg">
           </audio>
@@ -1375,7 +1380,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer50" onclick="enableAnswerInput('answer50')"
-            onkeydown="handleInputKeydown(event, 'answer50')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer50')" autocomplete="off">
           <audio id="audio50" controls style="display: none;">
             <source src="답안 입력란50.mp3" type="audio/mpeg">
           </audio>
@@ -1399,7 +1404,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer51" onclick="enableAnswerInput('answer51')"
-            onkeydown="handleInputKeydown(event, 'answer51')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer51')" autocomplete="off">
           <audio id="audio51" controls style="display: none;">
             <source src="답안 입력란51.mp3" type="audio/mpeg">
           </audio>
@@ -1424,7 +1429,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer52" onclick="enableAnswerInput('answer52')"
-            onkeydown="handleInputKeydown(event, 'answer52')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer52')" autocomplete="off">
           <audio id="audio52" controls style="display: none;">
             <source src="답안 입력란52.mp3" type="audio/mpeg">
           </audio>
@@ -1448,7 +1453,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="answer53" onclick="enableAnswerInput('answer53')"
-            onkeydown="handleInputKeydown(event, 'answer53')" autocomplete="off"  >
+            onkeydown="handleInputKeydown(event, 'answer53')" autocomplete="off">
           <audio id="audio53" controls style="display: none;">
             <source src="답안 입력란53.mp3" type="audio/mpeg">
           </audio>
@@ -1479,7 +1484,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria1" onclick="enableAnswerInput('criteria1')"
-            onkeydown="handleInputKeydown(event, 'criteria1')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria1')" autocomplete="off">
           <audio id="audio57" controls style="display: none;">
             <source src="준거답안입력1.mp3" type="audio/mpeg">
           </audio>
@@ -1492,7 +1497,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria2" onclick="enableAnswerInput('criteria2')"
-            onkeydown="handleInputKeydown(event, 'criteria2')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria2')" autocomplete="off">
           <audio id="audio58" controls style="display: none;">
             <source src="준거답안입력2.mp3" type="audio/mpeg">
           </audio>
@@ -1505,7 +1510,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria3" onclick="enableAnswerInput('criteria3')"
-            onkeydown="handleInputKeydown(event, 'criteria3')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria3')" autocomplete="off">
           <audio id="audio59" controls style="display: none;">
             <source src="준거답안입력3.mp3" type="audio/mpeg">
           </audio>
@@ -1518,7 +1523,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria4" onclick="enableAnswerInput('criteria4')"
-            onkeydown="handleInputKeydown(event, 'criteria4')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria4')" autocomplete="off">
           <audio id="audio60" controls style="display: none;">
             <source src="준거답안입력4.mp3" type="audio/mpeg">
           </audio>
@@ -1531,7 +1536,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria5" onclick="enableAnswerInput('criteria5')"
-            onkeydown="handleInputKeydown(event, 'criteria5')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria5')" autocomplete="off">
           <audio id="audio61" controls style="display: none;">
             <source src="준거답안입력5.mp3" type="audio/mpeg">
           </audio>
@@ -1544,20 +1549,20 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria6" onclick="enableAnswerInput('criteria6')"
-            onkeydown="handleInputKeydown(event, 'criteria6')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria6')" autocomplete="off">
           <audio id="audio62" controls style="display: none;">
             <source src="준거답안입력6.mp3" type="audio/mpeg">
           </audio>
         </td>
       </tr>
-      
+
       <tr>
         <td onclick="playAudio('준거7.mp3')">설문조사 7</td>
       </tr>
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria7" onclick="enableAnswerInput('criteria7')"
-            onkeydown="handleInputKeydown(event, 'criteria7')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria7')" autocomplete="off">
           <audio id="audio63" controls style="display: none;">
             <source src="준거답안입력7.mp3" type="audio/mpeg">
           </audio>
@@ -1569,7 +1574,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria8" onclick="enableAnswerInput('criteria8')"
-            onkeydown="handleInputKeydown(event, 'criteria8')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria8')" autocomplete="off">
           <audio id="audio64" controls style="display: none;">
             <source src="준거답안입력8.mp3" type="audio/mpeg">
           </audio>
@@ -1581,9 +1586,9 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria9" onclick="enableAnswerInput('criteria9')"
-            onkeydown="handleInputKeydown(event, 'criteria9')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria9')" autocomplete="off">
           <audio id="audio65" controls style="display: none;">
-            <source src="준거답안입9.mp3"type="audio/mpeg">
+            <source src="준거답안입9.mp3" type="audio/mpeg">
           </audio>
         </td>
       </tr>
@@ -1593,7 +1598,7 @@
       <tr>
         <td class="selected">답안 입력란
           <input type="text" id="criteria10" onclick="enableAnswerInput('criteria10')"
-            onkeydown="handleInputKeydown(event, 'criteria10')" autocomplete="off" >
+            onkeydown="handleInputKeydown(event, 'criteria10')" autocomplete="off">
           <audio id="audio66" controls style="display: none;">
             <source src="준거답안입력10.mp3" type="audio/mpeg">
           </audio>
@@ -1606,12 +1611,12 @@
       <audio id="warning-audio">
         <source src="경고음파일.mp3" type="audio/mpeg">
       </audio>
-      
+
 
   </div>
   </table>
   <script>
-   let formSubmitted = false;
+    let formSubmitted = false;
     const audioPlayer = new Audio();
     let currentIndex = 0;
     const audioFiles = [
@@ -1625,7 +1630,7 @@
       '3.mp3', '3-1.mp3', '3-2.mp3', '3-3.mp3', '3-4.mp3', '답안 입력란5.mp3',
       '4.mp3', '4-1.mp3', '4-2.mp3', '4-3.mp3', '4-4.mp3', '답안 입력란6.mp3',
       '5.mp3', '5-1.mp3', '5-2.mp3', '5-3.mp3', '5-4.mp3', '답안 입력란7.mp3',
-      '6.mp3','6세단어.mp3', '6-1.mp3', '6-2.mp3', '6-3.mp3', '6-4.mp3', '답안 입력란8.mp3',
+      '6.mp3', '6세단어.mp3', '6-1.mp3', '6-2.mp3', '6-3.mp3', '6-4.mp3', '답안 입력란8.mp3',
       '7.mp3', '7-1.mp3', '7-2.mp3', '7-3.mp3', '7-4.mp3', '답안 입력란9.mp3',
       '8.mp3', '8-1.mp3', '8-2.mp3', '8-3.mp3', '8-4.mp3', '답안 입력란10.mp3',
       '9.mp3', '9-1.mp3', '9-2.mp3', '9-3.mp3', '9-4.mp3', '답안 입력란11.mp3',
@@ -1637,7 +1642,7 @@
       '15.mp3', '15-1.mp3', '15-2.mp3', '15-3.mp3', '15-4.mp3', '답안 입력란17.mp3',
       '16.mp3', '16-1.mp3', '16-2.mp3', '16-3.mp3', '16-4.mp3', '답안 입력란18.mp3',
       '17.mp3', '17-1.mp3', '17-2.mp3', '17-3.mp3', '17-4.mp3', '답안 입력란19.mp3',
-      '18.mp3','18세단어.mp3', '18-1.mp3', '18-2.mp3', '18-3.mp3', '18-4.mp3', '답안 입력란20.mp3',
+      '18.mp3', '18세단어.mp3', '18-1.mp3', '18-2.mp3', '18-3.mp3', '18-4.mp3', '답안 입력란20.mp3',
       '19.mp3', '19-1.mp3', '19-2.mp3', '19-3.mp3', '19-4.mp3', '답안 입력란21.mp3',
       '20.mp3', '20-1.mp3', '20-2.mp3', '20-3.mp3', '20-4.mp3', '답안 입력란22.mp3',
       '21.mp3', '21-1.mp3', '21-2.mp3', '21-3.mp3', '21-4.mp3', '답안 입력란23.mp3',
@@ -1698,132 +1703,132 @@
 
 
     let isNewTimerStarted = false;
-const newTargetIndexToStartTimer = 32; // 새로운 타이머 시작 셀
-const newTargetIndexToEndTimer = 347; // 새로운 타이머 종료 셀
-let elapsedTime = 0.0; // 경과 시간 (초)
-let newTimerInterval;
+    const newTargetIndexToStartTimer = 32; // 새로운 타이머 시작 셀
+    const newTargetIndexToEndTimer = 347; // 새로운 타이머 종료 셀
+    let elapsedTime = 0.0; // 경과 시간 (초)
+    let newTimerInterval;
 
-// 새로운 타이머 시작 함수
-function startNewTimer() {
-  newTimerInterval = setInterval(updateNewTimer, 10); // 0.01초 간격
-}
+    // 새로운 타이머 시작 함수
+    function startNewTimer() {
+      newTimerInterval = setInterval(updateNewTimer, 10); // 0.01초 간격
+    }
 
-// 새로운 타이머 업데이트 함수
-function updateNewTimer() {
-  elapsedTime += 0.01; // 0.01초 증가
-  const newTimerDisplay = document.getElementById('new-timer');
-  const minutes = Math.floor(elapsedTime / 60);
-  const seconds = (elapsedTime % 60).toFixed(2);  // 소수점 두 자리까지 표시
-  newTimerDisplay.innerText = `${minutes}:${seconds}`;
-}
+    // 새로운 타이머 업데이트 함수
+    function updateNewTimer() {
+      elapsedTime += 0.01; // 0.01초 증가
+      const newTimerDisplay = document.getElementById('new-timer');
+      const minutes = Math.floor(elapsedTime / 60);
+      const seconds = (elapsedTime % 60).toFixed(2);  // 소수점 두 자리까지 표시
+      newTimerDisplay.innerText = `${minutes}:${seconds}`;
+    }
 
 
 
 
 
     let isTimerStarted = false;
-const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
-const targetIndexToMoveCursor = 347; // 제한 시간이 다 되면 이동할 인덱스
-const timerMinutes = 40; // 제한 시간 (분)
-let remainingTime = timerMinutes * 60; // 남은 시간 (초)
+    const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
+    const targetIndexToMoveCursor = 347; // 제한 시간이 다 되면 이동할 인덱스
+    const timerMinutes = 40; // 제한 시간 (분)
+    let remainingTime = timerMinutes * 60; // 남은 시간 (초)
 
-function handleKeyDown(event) {
-  const warningAudioElement = document.getElementById('warning-audio');
-  
-  switch (event.key) {
-    case 'ArrowDown':
-      if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
-        const inputId = `criteria${(currentIndex - 353) / 2 + 1}`;
-        const inputValue = document.getElementById(inputId).value;
-        if (!inputValue) {
-          warningAudioElement.play(); // 경고음 재생
-          return; // 답이 입력되지 않았으면 여기서 함수 종료
-        } else {
-          warningAudioElement.pause(); // 경고음 정지
-          warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
-        }
+    function handleKeyDown(event) {
+      const warningAudioElement = document.getElementById('warning-audio');
+
+      switch (event.key) {
+        case 'ArrowDown':
+          if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
+            const inputId = `criteria${(currentIndex - 353) / 2 + 1}`;
+            const inputValue = document.getElementById(inputId).value;
+            if (!inputValue) {
+              warningAudioElement.play(); // 경고음 재생
+              return; // 답이 입력되지 않았으면 여기서 함수 종료
+            } else {
+              warningAudioElement.pause(); // 경고음 정지
+              warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
+            }
+          }
+          currentIndex++;
+          limitCurrentIndex();
+          playAudio(audioFiles[currentIndex]);
+          if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
+            startTimer();
+            isTimerStarted = true;
+          }
+          // 427번 인덱스 셀에 도착했을 때 서버로 데이터 전송
+          if (currentIndex === 372) {
+            submitAnswersAndTimeToServer(); // 데이터 전송 함수 호출
+          }
+          break;
+        case 'ArrowUp':
+          if (currentIndex !== 347 && currentIndex !== 32) { // 405번 or 30번 인덱스 셀이 아닌 경우에만 작동하도록 조건 추가
+            currentIndex--;
+            limitCurrentIndex();
+            playAudio(audioFiles[currentIndex]);
+            if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
+              startTimer();
+              isTimerStarted = true;
+            }
+          }
+          break;
+        case 'ArrowLeft':
+          audioPlayer.currentTime = 0;
+          audioPlayer.play();
+          break;
+        case 'ArrowRight':
+          audioPlayer.currentTime = 0;
+          audioPlayer.play();
+          break;
+        case ' ':
+          event.preventDefault();
+          if (!audioPlayer.src) {
+            audioPlayer.src = audioFiles[currentIndex];
+          }
+          if (audioPlayer.paused) {
+            audioPlayer.play();
+          } else {
+            audioPlayer.pause();
+          }
+          break;
       }
-      currentIndex++;
-      limitCurrentIndex();
-      playAudio(audioFiles[currentIndex]);
-      if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
-        startTimer();
-        isTimerStarted = true;
+      if (currentIndex === newTargetIndexToStartTimer && !isNewTimerStarted) {
+        startNewTimer();
+        isNewTimerStarted = true;
       }
-      // 427번 인덱스 셀에 도착했을 때 서버로 데이터 전송
-      if (currentIndex === 372) {
-        submitAnswersAndTimeToServer(); // 데이터 전송 함수 호출
+      if (currentIndex === newTargetIndexToEndTimer) {
+        clearInterval(newTimerInterval);
+        submitAnswersAndTimeToServer();
       }
-      break;
-    case 'ArrowUp':
-      if (currentIndex !== 347 && currentIndex !== 32) { // 405번 or 30번 인덱스 셀이 아닌 경우에만 작동하도록 조건 추가
-        currentIndex--;
+
+      updateSelectedCell();
+    }
+
+    let timerInterval; // 타이머 인터벌을 저장하는 변수
+
+    function startTimer() {
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+      remainingTime--; // 1초 감소
+      const timerDisplay = document.getElementById('timer');
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+
+      timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (remainingTime === 0) {
+        clearInterval(timerInterval); // 타이머 중지
+        currentIndex = targetIndexToMoveCursor; // 405 셀로 이동
+        currentProblem = targetIndexToMoveCursor; // currentProblem도 405로 업데이트
         limitCurrentIndex();
-        playAudio(audioFiles[currentIndex]);
-        if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
-          startTimer();
-          isTimerStarted = true;
-        }
+        updateSelectedCell();
+        playAudio(audioFiles[currentIndex]); // 405 셀의 MP3 파일 재생
+
+        // 반응시간 타이머 종료
+        clearInterval(interval);
       }
-      break;
-    case 'ArrowLeft':
-      audioPlayer.currentTime = 0;
-      audioPlayer.play();
-      break;
-    case 'ArrowRight':
-      audioPlayer.currentTime = 0;
-      audioPlayer.play();
-      break;
-      case ' ':
-      event.preventDefault();
-      if (!audioPlayer.src) {
-        audioPlayer.src = audioFiles[currentIndex];
-      }
-      if (audioPlayer.paused) {
-        audioPlayer.play();
-      } else {
-        audioPlayer.pause();
-      }
-      break;
-  }
-  if (currentIndex === newTargetIndexToStartTimer && !isNewTimerStarted) {
-    startNewTimer();
-    isNewTimerStarted = true;
-  }
-  if (currentIndex === newTargetIndexToEndTimer) {
-    clearInterval(newTimerInterval);
-    submitAnswersAndTimeToServer();
-  }
-
-  updateSelectedCell();
-}
-
-let timerInterval; // 타이머 인터벌을 저장하는 변수
-
-function startTimer() {
-  timerInterval = setInterval(updateTimer, 1000);
-}
-
-function updateTimer() {
-  remainingTime--; // 1초 감소
-  const timerDisplay = document.getElementById('timer');
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
-
-  timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-  if (remainingTime === 0) {
-    clearInterval(timerInterval); // 타이머 중지
-    currentIndex = targetIndexToMoveCursor; // 405 셀로 이동
-    currentProblem = targetIndexToMoveCursor; // currentProblem도 405로 업데이트
-    limitCurrentIndex();
-    updateSelectedCell();
-    playAudio(audioFiles[currentIndex]); // 405 셀의 MP3 파일 재생
-
-    // 반응시간 타이머 종료
-    clearInterval(interval);
-  }
-}
+    }
 
 
     function displayEndMessage() {
@@ -1842,8 +1847,8 @@ function updateTimer() {
     const targetIndex = 347; // 이 인덱스까지 타이머 잼
 
     function playAudio(filename) {
-  const warningAudioElement = document.getElementById('warning-audio');
-  stopWarningAudio(warningAudioElement); // 경고음 정지
+      const warningAudioElement = document.getElementById('warning-audio');
+      stopWarningAudio(warningAudioElement); // 경고음 정지
       const audioIndex = audioFiles.indexOf(filename);
       if (audioIndex !== -1) {
         currentIndex = audioIndex;
@@ -1866,72 +1871,72 @@ function updateTimer() {
 
 
     var responseTimes = Array(53).fill(0);
-var currentProblem = 0;
-var currentGroup = 0;
-var interval;
-var responseStartTime; // 반응시간 타이머의 시작 시간을 저장하는 변수
+    var currentProblem = 0;
+    var currentGroup = 0;
+    var interval;
+    var responseStartTime; // 반응시간 타이머의 시작 시간을 저장하는 변수
 
-// 반응시간 그룹을 정의합니다. 각 인덱스는 그룹이 끝나는 지점을 나타냅니다.
-var groups = [31, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+    // 반응시간 그룹을 정의합니다. 각 인덱스는 그룹이 끝나는 지점을 나타냅니다.
+    var groups = [31, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
       98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+      161, 167, 173, 179, 185, 191, 197, 203, 209, 215,
       221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+      284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
       345, 346];
 
-// 반응시간 타이머 시작
+    // 반응시간 타이머 시작
 
-function startResponseTimer() {
-  clearInterval(interval);
-  responseStartTime = new Date(); // 반응시간 타이머 시작 시간 설정
-  interval = setInterval(function () {
-    var now = new Date();
-    responseTimes[currentGroup] = (now - responseStartTime) / 1000; // 초 단위로 계산
-    // 소수점 두 자리까지 표시
-  }, 10); // 0.01초마다 실행
-}
-
-// 위/아래 방향키로 문제 이동
-window.addEventListener("keydown", function (event) {
-  var newProblemIndex = currentProblem;
-  if (event.key === "ArrowUp" && currentProblem > 0 && currentProblem !== 347 && currentProblem !== 32) {
-    newProblemIndex--;
-  } else if (event.key === "ArrowDown") {
-    newProblemIndex++;
-  }
-
-  var newGroupIndex = -1;
-  for (var i = 0; i < groups.length; i++) {
-    if (groups[i] >= newProblemIndex) {
-      newGroupIndex = i;
-      break;
+    function startResponseTimer() {
+      clearInterval(interval);
+      responseStartTime = new Date(); // 반응시간 타이머 시작 시간 설정
+      interval = setInterval(function () {
+        var now = new Date();
+        responseTimes[currentGroup] = (now - responseStartTime) / 1000; // 초 단위로 계산
+        // 소수점 두 자리까지 표시
+      }, 10); // 0.01초마다 실행
     }
-  }
 
-  // 그룹이 바뀌면 반응시간 타이머를 업데이트합니다.
-  if (newGroupIndex !== -1 && newGroupIndex !== currentGroup) {
-    currentGroup = newGroupIndex;
+    // 위/아래 방향키로 문제 이동
+    window.addEventListener("keydown", function (event) {
+      var newProblemIndex = currentProblem;
+      if (event.key === "ArrowUp" && currentProblem > 0 && currentProblem !== 347 && currentProblem !== 32) {
+        newProblemIndex--;
+      } else if (event.key === "ArrowDown") {
+        newProblemIndex++;
+      }
+
+      var newGroupIndex = -1;
+      for (var i = 0; i < groups.length; i++) {
+        if (groups[i] >= newProblemIndex) {
+          newGroupIndex = i;
+          break;
+        }
+      }
+
+      // 그룹이 바뀌면 반응시간 타이머를 업데이트합니다.
+      if (newGroupIndex !== -1 && newGroupIndex !== currentGroup) {
+        currentGroup = newGroupIndex;
+        startResponseTimer();
+      }
+
+      // 404 인덱스를 넘어가면 반응시간 타이머를 종료합니다.
+      if (newProblemIndex > 346) {
+        clearInterval(interval);
+      }
+
+      currentProblem = newProblemIndex;
+    });
+
+    // 첫 번째 반응시간 타이머 시작
     startResponseTimer();
-  }
-
-  // 404 인덱스를 넘어가면 반응시간 타이머를 종료합니다.
-  if (newProblemIndex > 346) {
-    clearInterval(interval);
-  }
-
-  currentProblem = newProblemIndex;
-});
-
-// 첫 번째 반응시간 타이머 시작
-startResponseTimer();
 
 
     const answerCellIndices = [3, 4, 5, 22, 28,
-      37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
+      37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
       98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
+      161, 167, 173, 179, 185, 191, 197, 203, 209, 215,
       221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
+      284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
       345, 353, 355, 357, 359, 361, 363, 365, 367, 369, 371];
 
     function isAnswerCell(index) {
@@ -1974,129 +1979,130 @@ startResponseTimer();
     function readNumber(number) { }
 
     function handleInputKeydown(event, answerId) {
-  const input = document.getElementById(answerId);
-    
-  // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
-  const maxLength = personalMaxLengths[answerId];
+      const input = document.getElementById(answerId);
 
-// 350, 352, ... , 368 인덱스 셀에 대한 조건
-if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
-    if (event.key < '1' || event.key > '5') {
-      event.preventDefault(); // 1~5 외의 키는 입력되지 않도록 함
-      return;
-    }
-  }
+      // personalMaxLengths 객체에서 해당 answerId의 최대 길이를 가져옵니다.
+      const maxLength = personalMaxLengths[answerId];
 
-  
-  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-    event.preventDefault();
-    playAudio(audioFiles[currentIndex]); // 현재 문제에 대한 오디오를 재생합니다.
-    return;
-  }
-
-  if (event.key === 'ArrowDown') {
-    if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) && !input.value) {
-      return; // 답변이 입력되지 않았다면 아래 방향키를 눌러도 블러 처리하지 않음
-    }
-    event.preventDefault();
-    input.blur();
-  } else if (!maxLength && event.key >= '0' && event.key <= '9') {
-    if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
-      input.value = ""; // 덮어쓰기 기능 유지
-    }
-    readNumber(event.key); // 숫자를 읽어주는 함수 호출
-    playCustomAudio(event.key); // 숫자에 해당하는 MP3 파일 재생
-  } else if (event.key === ' ') {
-    event.preventDefault();
-  } else if (event.key === 'Backspace') {
-    if (input.value.length > 0) {
-      input.value = input.value.slice(0, -1);
-      readNumber(input.value);
-    }
-    event.preventDefault();
-  } else if (!maxLength && (input.value.length >= 1 || isNaN(parseInt(event.key)))) {
-    event.preventDefault();
-  } else if (maxLength && (input.value.length >= maxLength || isNaN(parseInt(event.key)))) {
-    event.preventDefault();
-  } else {
-    readNumber(input.value + event.key);
-    readNumber(event.key);
-    playCustomAudio(event.key);
-  }
-
-  // 22, 28, ... , 345 인덱스 셀에 대한 조건
-  if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
-      98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-      161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
-      221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-      284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
-      345].includes(currentIndex)) {
-    if (event.key < '1' || event.key > '4') {
-      event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
-      return;
-    }
-  }
-
-
-  function playCustomAudio(number) {
-  const warningAudioElement = document.getElementById('warning-audio');
-  stopWarningAudio(warningAudioElement); // 경고음 정지
-  if (
-    ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) && 
-    ['0', '6', '7', '8', '9'].includes(number)) ||
-    ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92, 
-    98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
-    161, 167, 173, 179, 185, 191, 197, 203, 209, 215, 
-    221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
-    284, 290, 296, 302, 308, 314, 320, 327, 333, 339, 
-    345].includes(currentIndex) && 
-    ['0', '5', '6', '7', '8', '9'].includes(number))
-  ) {
-    audioPlayer.src = ''; // 재생하지 않음
-  } else {switch (number) {
-          case '1':
-            audioPlayer.src = '일.mp3';
-            break;
-          case '2':
-            audioPlayer.src = '이.mp3';
-            break;
-          case '3':
-            audioPlayer.src = '삼.mp3';
-            break;
-          case '4':
-            audioPlayer.src = '사.mp3';
-            break;
-          case '5':
-            audioPlayer.src = '오.mp3';
-            break;
-          case '6':
-            audioPlayer.src = '육.mp3';
-            break;
-          case '7':
-            audioPlayer.src = '칠.mp3';
-            break;
-          case '8':
-            audioPlayer.src = '팔.mp3';
-            break;
-          case '9':
-            audioPlayer.src = '구.mp3';
-            break;
-          case '0':
-            audioPlayer.src = '공.mp3';
-            break;
-          default:
-            audioPlayer.src = ''; // 숫자 이외의 입력에는 MP3 재생하지 않음
+      // 350, 352, ... , 368 인덱스 셀에 대한 조건
+      if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
+        if (event.key < '1' || event.key > '5') {
+          event.preventDefault(); // 1~5 외의 키는 입력되지 않도록 함
+          return;
         }
-        audioPlayer.play();
       }
-      input.selectionStart = input.value.length;
-      input.selectionEnd = input.value.length;
+
+
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        playAudio(audioFiles[currentIndex]); // 현재 문제에 대한 오디오를 재생합니다.
+        return;
+      }
+
+      if (event.key === 'ArrowDown') {
+        if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) && !input.value) {
+          return; // 답변이 입력되지 않았다면 아래 방향키를 눌러도 블러 처리하지 않음
+        }
+        event.preventDefault();
+        input.blur();
+      } else if (!maxLength && event.key >= '0' && event.key <= '9') {
+        if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
+          input.value = ""; // 덮어쓰기 기능 유지
+        }
+        readNumber(event.key); // 숫자를 읽어주는 함수 호출
+        playCustomAudio(event.key); // 숫자에 해당하는 MP3 파일 재생
+      } else if (event.key === ' ') {
+        event.preventDefault();
+      } else if (event.key === 'Backspace') {
+        if (input.value.length > 0) {
+          input.value = input.value.slice(0, -1);
+          readNumber(input.value);
+        }
+        event.preventDefault();
+      } else if (!maxLength && (input.value.length >= 1 || isNaN(parseInt(event.key)))) {
+        event.preventDefault();
+      } else if (maxLength && (input.value.length >= maxLength || isNaN(parseInt(event.key)))) {
+        event.preventDefault();
+      } else {
+        readNumber(input.value + event.key);
+        readNumber(event.key);
+        playCustomAudio(event.key);
+      }
+
+      // 22, 28, ... , 345 인덱스 셀에 대한 조건
+      if ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
+        98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+        161, 167, 173, 179, 185, 191, 197, 203, 209, 215,
+        221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+        284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
+        345].includes(currentIndex)) {
+        if (event.key < '1' || event.key > '4') {
+          event.preventDefault(); // 1~4 외의 키는 입력되지 않도록 함
+          return;
+        }
+      }
+
+
+      function playCustomAudio(number) {
+        const warningAudioElement = document.getElementById('warning-audio');
+        stopWarningAudio(warningAudioElement); // 경고음 정지
+        if (
+          ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) &&
+            ['0', '6', '7', '8', '9'].includes(number)) ||
+          ([22, 28, 37, 43, 49, 55, 61, 68, 74, 80, 86, 92,
+            98, 106, 112, 118, 124, 130, 136, 143, 149, 155,
+            161, 167, 173, 179, 185, 191, 197, 203, 209, 215,
+            221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
+            284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
+            345].includes(currentIndex) &&
+            ['0', '5', '6', '7', '8', '9'].includes(number))
+        ) {
+          audioPlayer.src = ''; // 재생하지 않음
+        } else {
+          switch (number) {
+            case '1':
+              audioPlayer.src = '일.mp3';
+              break;
+            case '2':
+              audioPlayer.src = '이.mp3';
+              break;
+            case '3':
+              audioPlayer.src = '삼.mp3';
+              break;
+            case '4':
+              audioPlayer.src = '사.mp3';
+              break;
+            case '5':
+              audioPlayer.src = '오.mp3';
+              break;
+            case '6':
+              audioPlayer.src = '육.mp3';
+              break;
+            case '7':
+              audioPlayer.src = '칠.mp3';
+              break;
+            case '8':
+              audioPlayer.src = '팔.mp3';
+              break;
+            case '9':
+              audioPlayer.src = '구.mp3';
+              break;
+            case '0':
+              audioPlayer.src = '공.mp3';
+              break;
+            default:
+              audioPlayer.src = ''; // 숫자 이외의 입력에는 MP3 재생하지 않음
+          }
+          audioPlayer.play();
+        }
+        input.selectionStart = input.value.length;
+        input.selectionEnd = input.value.length;
+      }
     }
-  }
     function stopWarningAudio(warningAudioElement) {
-  warningAudioElement.pause(); // 경고음 정지
-  warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
-}
+      warningAudioElement.pause(); // 경고음 정지
+      warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
+    }
 
     // 수정된 handleInputFocus 함수
     function handleInputFocus(event) {
@@ -2119,52 +2125,57 @@ if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
 
 
     let accessTime = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" }); // 한국 시간으로 페이지에 접속한 정확한 날짜와 시간을 저장합니다.
+    // 주기적으로 자동 저장하는 로직
+    setInterval(function () {
+      const dataToSave = { /* 여기에 저장할 데이터를 넣는다 */ };
+      localStorage.setItem('savedData', JSON.stringify(dataToSave));
+    }, 30000);  // 예: 30초마다 저장
 
 
     // 서버로 답변과 시간을 전송하는 함수
     function submitAnswersAndTimeToServer() {
-  if (!formSubmitted) {
-    formSubmitted = true;
+      if (!formSubmitted) {
+        formSubmitted = true;
 
-    const answerInputs = Array.from(document.querySelectorAll('input[type="text"]'));
-    const criteriaInputs = Array.from(document.querySelectorAll('.criteria-input'));
-    const criteria = criteriaInputs.map(input => input.value);
-  
+        const answerInputs = Array.from(document.querySelectorAll('input[type="text"]'));
+        const criteriaInputs = Array.from(document.querySelectorAll('.criteria-input'));
+        const criteria = criteriaInputs.map(input => input.value);
 
-    // 기존 코드에서 필요한 변수를 가져오는 부분은 그대로 둘게
-    const personalInput = answerInputs.findIndex(input => input.id === 'personal');
-    const sexInput = answerInputs.findIndex(input => input.id === 'sex');
-    const yymmddInput = answerInputs.findIndex(input => input.id === 'yymmdd');
-    const otherInputs = answerInputs.filter((_, index) => ![personalInput, sexInput, yymmddInput].includes(index));
-    const answers = otherInputs.map(input => input.value);
-    const personal = answerInputs[personalInput].value;
-    const sex = answerInputs[sexInput].value;
-    const yymmdd = answerInputs[yymmddInput].value;
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/submit', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        console.log('답변과 접속 시간이 제출되었습니다.');
-      } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
-        console.error('답변과 접속 시간 제출 중 오류가 발생했습니다.');
+        // 기존 코드에서 필요한 변수를 가져오는 부분은 그대로 둘게
+        const personalInput = answerInputs.findIndex(input => input.id === 'personal');
+        const sexInput = answerInputs.findIndex(input => input.id === 'sex');
+        const yymmddInput = answerInputs.findIndex(input => input.id === 'yymmdd');
+        const otherInputs = answerInputs.filter((_, index) => ![personalInput, sexInput, yymmddInput].includes(index));
+        const answers = otherInputs.map(input => input.value);
+        const personal = answerInputs[personalInput].value;
+        const sex = answerInputs[sexInput].value;
+        const yymmdd = answerInputs[yymmddInput].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/submit', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            console.log('답변과 접속 시간이 제출되었습니다.');
+          } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
+            console.error('답변과 접속 시간 제출 중 오류가 발생했습니다.');
+          }
+        };
+
+        // answers 배열과 elapsedTime, accessTime, personal, sex, yymmdd, criteriaAnswers 변수를 JSON 형태로 서버로 전송
+        xhr.send(JSON.stringify({ answers, accessTime, personal, sex, yymmdd, criteria, responseTimes, elapsedTime }));
       }
-    };
-
-    // answers 배열과 elapsedTime, accessTime, personal, sex, yymmdd, criteriaAnswers 변수를 JSON 형태로 서버로 전송
-    xhr.send(JSON.stringify({ answers, accessTime, personal, sex, yymmdd, criteria, responseTimes, elapsedTime }));
-  }
-}
-window.onload = function() {
-  const savedData = localStorage.getItem('savedData');
-  if (savedData) {
-    const parsedData = JSON.parse(savedData);
-    // parsedData 안에는 answers, accessTime, personal, sex, yymmdd, criteria, responseTimes 가 들어있을 것이다.
-    // 이 데이터를 서버로 전송하는 로직을 여기에 추가한다.
-    // 예: ajax 요청이나 fetch 사용
-  }
-}
+    }
+    window.onload = function () {
+      const savedData = localStorage.getItem('savedData');
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        // parsedData 안에는 answers, accessTime, personal, sex, yymmdd, criteria, responseTimes 가 들어있을 것이다.
+        // 이 데이터를 서버로 전송하는 로직을 여기에 추가한다.
+        // 예: ajax 요청이나 fetch 사용
+      }
+    }
 
     // window의 onbeforeunload 이벤트 핸들러 등록
     window.onbeforeunload = function () {
@@ -2177,8 +2188,9 @@ window.onload = function() {
       submitAnswersAndTimeToServer();
     });
 
-  
+
     document.addEventListener('keydown', handleKeyDown);
   </script>
 </body>
+
 </html>
