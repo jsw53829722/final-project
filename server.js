@@ -28,13 +28,14 @@ app.post('/submit', (req, res) => {
   const yymmdd = req.body.yymmdd;
   const criteria = req.body.criteria; // criteria를 받아옴
   const elapsedTime = parseFloat(req.body.elapsedTime).toFixed(2); // elapsedTime를 소수점 두 자리까지 표시
+  const newAnswers = answers.slice(2);
 
-
-  const dataToInsert = [personal, sex, yymmdd, ...answers.slice(2), ...responseTimes.slice(1), ...criteria, accessTime, elapsedTime]; // criteria 추가
+  const dataToInsert = [personal, sex, yymmdd, ...newAnswers, ...responseTimes.slice(1), ...criteria, accessTime, elapsedTime]; // criteria 추가
 
 
   const columns = [
-    'personal', 'sex', 'yymmdd','answer3', 'answer4', 'answer5',
+    'personal', 'sex', 'yymmdd',
+    'answer1', 'answer2', 'answer3', 'answer4', 'answer5',
     'answer6', 'answer7', 'answer8', 'answer9', 'answer10',
     'answer11', 'answer12', 'answer13', 'answer14', 'answer15',
     'answer16', 'answer17', 'answer18', 'answer19', 'answer20',
@@ -43,23 +44,22 @@ app.post('/submit', (req, res) => {
     'answer31', 'answer32', 'answer33', 'answer34', 'answer35',
     'answer36', 'answer37', 'answer38', 'answer39', 'answer40',
     'answer41', 'answer42', 'answer43', 'answer44', 'answer45',
-    'answer46', 'answer47', 'answer48', 'answer49', 'answer50',
-    'answer51', 'answer52', 'answer53',
-    'criteria1', 'criteria2','criteria3', 'criteria4', 'criteria5',
-    'criteria6', 'criteria7','criteria8', 'criteria9', 'criteria10',
-    'responsetime1','responsetime2','responsetime3','responsetime4',
-    'responsetime5','responsetime6','responsetime7','responsetime8',
-    'responsetime9','responsetime10','responsetime11','responsetime12',
-    'responsetime13','responsetime14','responsetime15','responsetime16',
-    'responsetime17','responsetime18','responsetime19','responsetime20',
-    'responsetime21','responsetime22','responsetime23','responsetime24',
-    'responsetime25','responsetime26','responsetime27','responsetime28',
-    'responsetime29','responsetime30','responsetime31','responsetime32',
-    'responsetime33','responsetime34','responsetime35','responsetime36',
-    'responsetime37','responsetime38','responsetime39','responsetime40',
-    'responsetime41','responsetime42','responsetime43','responsetime44',
-    'responsetime45','responsetime46','responsetime47','responsetime48',
-    'responsetime49','responsetime50','responsetime51','responsetime52',
+    'answer46', 'answer47', 'answer48', 'answer49', 'answer50', 'answer51',
+    'criteria1', 'criteria2', 'criteria3', 'criteria4', 'criteria5',
+    'criteria6', 'criteria7', 'criteria8', 'criteria9', 'criteria10',
+    'responsetime1', 'responsetime2', 'responsetime3', 'responsetime4',
+    'responsetime5', 'responsetime6', 'responsetime7', 'responsetime8',
+    'responsetime9', 'responsetime10', 'responsetime11', 'responsetime12',
+    'responsetime13', 'responsetime14', 'responsetime15', 'responsetime16',
+    'responsetime17', 'responsetime18', 'responsetime19', 'responsetime20',
+    'responsetime21', 'responsetime22', 'responsetime23', 'responsetime24',
+    'responsetime25', 'responsetime26', 'responsetime27', 'responsetime28',
+    'responsetime29', 'responsetime30', 'responsetime31', 'responsetime32',
+    'responsetime33', 'responsetime34', 'responsetime35', 'responsetime36',
+    'responsetime37', 'responsetime38', 'responsetime39', 'responsetime40',
+    'responsetime41', 'responsetime42', 'responsetime43', 'responsetime44',
+    'responsetime45', 'responsetime46', 'responsetime47', 'responsetime48',
+    'responsetime49', 'responsetime50', 'responsetime51', 'responsetime52',
     'accessTime', 'elapsedTime'
   ];
 
