@@ -1804,7 +1804,7 @@
     let isTimerStarted = false;
     const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
     const targetIndexToMoveCursor = 347; // 제한 시간이 다 되면 이동할 인덱스
-    const timerMinutes = 40; // 제한 시간 (분)
+    const timerMinutes = 1; // 제한 시간 (분)
     let remainingTime = timerMinutes * 60 * 1000; // 남은 시간 (밀리초)
 
     let timerInterval; // 타이머 인터벌을 저장하는 변수
@@ -1826,6 +1826,13 @@
       const timerDisplay = document.getElementById('timer');
       timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
+
+      if (currentIndex > targetIndexToMoveCursor) {
+        // 현재 인덱스가 지정된 인덱스를 넘으면 타이머를 중지
+        clearInterval(timerInterval);
+        console.log("타이머가 중지되었습니다."); // 디버깅용 로그, 필요 없으면 제거해도 됨
+        return;  // 함수 종료
+      }
 
       if (remainingTime <= 0) {
         clearInterval(timerInterval); // 타이머 중지
