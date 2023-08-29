@@ -3,7 +3,7 @@
 
 <head>
   <title>시험 페이지</title>
-  <div id="new-timer" style="display: none;"></div>
+  <div id="new-timer" ></div>
 
   <style>
     /* 중앙 정렬을 위한 스타일 */
@@ -1702,25 +1702,24 @@
 
 
 
-    let isNewTimerStarted = false;
-    const newTargetIndexToStartTimer = 32; // 새로운 타이머 시작 셀
-    const newTargetIndexToEndTimer = 347; // 새로운 타이머 종료 셀
-    let elapsedTime = 0.0; // 경과 시간 (초)
-    let newTimerInterval;
+    let startTimestamp;
+let newTimerInterval;
+const newTimerDisplay = document.getElementById('new-timer');
 
-    // 새로운 타이머 시작 함수
-    function startNewTimer() {
-      newTimerInterval = setInterval(updateNewTimer, 10); // 0.01초 간격
-    }
+function startNewTimer() {
+  startTimestamp = Date.now();
+  newTimerInterval = setInterval(updateNewTimer, 10);
+}
 
-    // 새로운 타이머 업데이트 함수
-    function updateNewTimer() {
-      elapsedTime += 0.01; // 0.01초 증가
-      const newTimerDisplay = document.getElementById('new-timer');
-      const minutes = Math.floor(elapsedTime / 60);
-      const seconds = (elapsedTime % 60).toFixed(2);  // 소수점 두 자리까지 표시
-      newTimerDisplay.innerText = `${minutes}:${seconds}`;
-    }
+function updateNewTimer() {
+  const currentTimestamp = Date.now();
+  const elapsedTime = (currentTimestamp - startTimestamp) / 1000; // 초 단위로 변환
+
+  const minutes = Math.floor(elapsedTime / 60);
+  const seconds = (elapsedTime % 60).toFixed(2);  // 소수점 두 자리까지 표시
+
+  newTimerDisplay.innerText = `${minutes}:${seconds}`;
+}
 
 
 
