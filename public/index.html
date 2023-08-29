@@ -1723,18 +1723,13 @@
       const seconds = (elapsedTime % 60).toFixed(2);  // 소수점 두 자리까지 표시
 
       newTimerDisplay.innerText = `${minutes}:${seconds}`;
+
+      // 지정한 셀에 도달했다면 타이머 정지
+      if (currentIndex === newTargetIndexToEndTimer) {
+        clearInterval(newTimerInterval);
+      }
     }
 
-
-
-
-
-
-    let isTimerStarted = false;
-    const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
-    const targetIndexToMoveCursor = 347; // 제한 시간이 다 되면 이동할 인덱스
-    const timerMinutes = 40; // 제한 시간 (분)
-    let remainingTime = timerMinutes * 60; // 남은 시간 (초)
 
     function handleKeyDown(event) {
       const warningAudioElement = document.getElementById('warning-audio');
@@ -1806,27 +1801,39 @@
       updateSelectedCell();
     }
 
+    let isTimerStarted = false;
+    const targetIndexToStartTimer = 32; // 타이머를 시작할 인덱스
+    const targetIndexToMoveCursor = 347; // 제한 시간이 다 되면 이동할 인덱스
+    const timerMinutes = 1; // 제한 시간 (분)
+    let remainingTime = timerMinutes * 60 * 1000; // 남은 시간 (밀리초)
+
     let timerInterval; // 타이머 인터벌을 저장하는 변수
+    let startTimestamp1; // 첫 번째 타이머의 시작 시간을 저장하는 변수
 
     function startTimer() {
+      startTimestamp1 = Date.now();
       timerInterval = setInterval(updateTimer, 1000);
     }
 
     function updateTimer() {
-      remainingTime--; // 1초 감소
-      const timerDisplay = document.getElementById('timer');
-      const minutes = Math.floor(remainingTime / 60);
-      const seconds = remainingTime % 60;
+      const currentTimestamp = Date.now();
+      remainingTime = (timerMinutes * 60 * 1000) - (currentTimestamp - startTimestamp1); // 밀리초 단위로 변환
 
+      const remainingSeconds = Math.floor(remainingTime / 1000);
+      const minutes = Math.floor(remainingSeconds / 60);
+      const seconds = remainingSeconds % 60;
+
+      const timerDisplay = document.getElementById('timer');
       timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-      if (remainingTime === 0) {
+
+      if (remainingTime <= 0) {
         clearInterval(timerInterval); // 타이머 중지
-        currentIndex = targetIndexToMoveCursor; // 405 셀로 이동
-        currentProblem = targetIndexToMoveCursor; // currentProblem도 405로 업데이트
+        currentIndex = targetIndexToMoveCursor; // 지정한 셀로 이동
+        currentProblem = targetIndexToMoveCursor; // currentProblem도 업데이트
         limitCurrentIndex();
         updateSelectedCell();
-        playAudio(audioFiles[currentIndex]); // 405 셀의 MP3 파일 재생
+        playAudio(audioFiles[currentIndex]); // 지정한 셀의 MP3 파일 재생
 
         // 반응시간 타이머 종료
         clearInterval(interval);
@@ -1896,7 +1903,7 @@
         var now = new Date();
         var elapsedTime = (now - groupStartTimes[currentGroup]) / 1000;
         responseTimes[currentGroup] += elapsedTime;  // 누적 반응시간
-        console.log("그룹 " + currentGroup + "의 누적 반응시간: " + responseTimes[currentGroup].toFixed(2) + "초");
+        /// console.log("그룹 " + currentGroup + "의 누적 반응시간: " + responseTimes[currentGroup].toFixed(2) + "초");
 
         groupStartTimes[currentGroup] = now;  // 시작 시간 업데이트
       }, 10);
