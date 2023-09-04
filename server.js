@@ -29,9 +29,11 @@ app.post('/submit', (req, res) => {
   const criteria = req.body.criteria; // criteria를 받아옴
   const elapsedTime = parseFloat(req.body.elapsedTime).toFixed(2); // elapsedTime를 소수점 두 자리까지 표시
   const newAnswers = answers.slice(2);
+  const education = req.body.education;
+  const location = req.body.location;
 
-  const dataToInsert = [personal, sex, yymmdd, ...newAnswers, ...responseTimes.slice(1), ...criteria, accessTime, elapsedTime]; // criteria 추가
-
+  const dataToInsert = [personal, sex, yymmdd, ...newAnswers, ...responseTimes.slice(1), ...criteria, accessTime, elapsedTime, education, location]; // criteria 추가
+ 
 
   const columns = [
     'personal', 'sex', 'yymmdd',
@@ -60,7 +62,7 @@ app.post('/submit', (req, res) => {
     'responsetime41', 'responsetime42', 'responsetime43', 'responsetime44',
     'responsetime45', 'responsetime46', 'responsetime47', 'responsetime48',
     'responsetime49', 'responsetime50', 'responsetime51', 'responsetime52',
-    'accessTime', 'elapsedTime'
+    'accessTime', 'elapsedTime','education', 'location',
   ];
 
   const columnNames = columns.join(', ');
