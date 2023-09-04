@@ -1604,6 +1604,41 @@
           </audio>
         </td>
       </tr>
+
+      <tr>
+        <td onclick="playAudio('준거11.mp3')">설문조사11</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('준거11-1.mp3')">설문조사11-1</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="education" onclick="enableAnswerInput('education')"
+            onkeydown="handleInputKeydown(event, 'education')" autocomplete="off" style="color: transparent;">
+          <audio id="audio67" controls style="display: none;">
+            <source src="준거11답안입력.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="playAudio('준거12.mp3')">설문조사12</td>
+      </tr>
+      <tr>
+        <td onclick="playAudio('준거12-1.mp3')">설문조사12-1</td>
+      </tr>
+      <tr>
+        <td class="selected">답안 입력란
+          <input type="text" id="location" onclick="enableAnswerInput('location')"
+            onkeydown="handleInputKeydown(event, 'location')" autocomplete="off" style="color: transparent;">
+          <audio id="audio68" controls style="display: none;">
+            <source src="준거12답안입력.mp3" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+
+
+
       <tr>
         <td onclick="playAudio('종료.mp3')">종료</td>
       </tr>
@@ -1680,7 +1715,7 @@
       '준거1.mp3', '준거답안입력1.mp3', '준거2.mp3', '준거답안입력2.mp3', '준거3.mp3', '준거답안입력3.mp3',
       '준거4.mp3', '준거답안입력4.mp3', '준거5.mp3', '준거답안입력5.mp3', '준거6.mp3', '준거답안입력6.mp3',
       '준거7.mp3', '준거답안입력7.mp3', '준거8.mp3', '준거답안입력8.mp3', '준거9.mp3', '준거답안입력9.mp3',
-      '준거10.mp3', '준거답안입력10.mp3',
+      '준거10.mp3', '준거답안입력10.mp3', '준거11.mp3', '준거11-1.mp3', '준거11답안입력.mp3', '준거12.mp3', '준거12-1.mp3', '준거12답안입력.mp3',
       '종료.mp3'
     ];
 
@@ -1736,26 +1771,38 @@
 
       switch (event.key) {
         case 'ArrowDown':
-          if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex)) {
-            const inputId = `criteria${(currentIndex - 353) / 2 + 1}`;
-            const inputValue = document.getElementById(inputId).value;
-            if (!inputValue) {
-              warningAudioElement.play(); // 경고음 재생
-              return; // 답이 입력되지 않았으면 여기서 함수 종료
-            } else {
-              warningAudioElement.pause(); // 경고음 정지
-              warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
-            }
-          }
+  if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371, 374, 377].includes(currentIndex)) {
+    let inputId;
+    let inputValue;
+    
+    if (currentIndex === 374) {
+      inputId = 'education'; // "school" 입력란의 ID
+    } else if (currentIndex === 377) {
+      inputId = 'location'; // "location" 입력란의 ID
+    } else {
+      inputId = `criteria${(currentIndex - 353) / 2 + 1}`;
+    }
+    
+    inputValue = document.getElementById(inputId).value;
+    if (!inputValue) {
+      warningAudioElement.play(); // 경고음 재생
+      return; // 입력값이 없으면 여기서 함수 종료
+    } else {
+      warningAudioElement.pause(); // 경고음 정지
+      warningAudioElement.currentTime = 0; // 경고음을 처음부터 다시 재생할 수 있게 함
+    }
+  }
           currentIndex++;
           limitCurrentIndex();
+
+          
           playAudio(audioFiles[currentIndex]);
           if (currentIndex === targetIndexToStartTimer && !isTimerStarted) {
             startTimer();
             isTimerStarted = true;
           }
           // 427번 인덱스 셀에 도착했을 때 서버로 데이터 전송
-          if (currentIndex === 372) {
+          if (currentIndex === 378) {
             submitAnswersAndTimeToServer(); // 데이터 전송 함수 호출
           }
           break;
@@ -1858,7 +1905,7 @@
     }
 
     function limitCurrentIndex() {
-      currentIndex = Math.max(0, Math.min(currentIndex, 372));//셀 이동 제한(마지막 인덱스-1)
+      currentIndex = Math.max(0, Math.min(currentIndex, 378));//셀 이동 제한(마지막 인덱스-1)
     }
 
     const targetIndex = 347; // 이 인덱스까지 타이머 잼
@@ -1958,7 +2005,7 @@
       161, 167, 173, 179, 185, 191, 197, 203, 209, 215,
       221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
       284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
-      345, 353, 355, 357, 359, 361, 363, 365, 367, 369, 371];
+      345, 353, 355, 357, 359, 361, 363, 365, 367, 369, 371, 374, 377];
 
     function isAnswerCell(index) {
       return answerCellIndices.includes(index);
@@ -1993,7 +2040,7 @@
     const personalMaxLengths = {
       personal: 3, // answer64에 대한 최대 글자 수
       sex: 1, // answer65에 대한 최대 글자 수
-      yymmdd: 6  // answer66에 대한 최대 글자 수
+      yymmdd: 6,  // answer66에 대한 최대 글자 수
     };
 
     // 숫자를 읽어주는 함수
@@ -2013,10 +2060,25 @@
           return;
         }
       }
-      if ([352, 354, 356, 358, 360, 362, 364, 366, 368, 370, 372].includes(currentIndex)) {
+      if ([352, 354, 356, 358, 360, 362, 364, 366, 368, 370, 372,373,375,376].includes(currentIndex)) {
         event.preventDefault(); // 아무 키도 입력되지 않도록 함
         return; // 여기서 return 해서 아래의 playCustomAudio가 호출되지 않도록 함
       }
+      if (currentIndex === 374) {
+    if (event.key < '1' || event.key > '7') {
+      event.preventDefault(); // 1~7 이외의 키는 입력되지 않도록 함
+      return;
+    }
+  }
+  if (currentIndex === 377) {
+    if (event.key < '1' || event.key > '6') {
+      event.preventDefault(); // 1~6 이외의 키는 입력되지 않도록 함
+      return;
+    }
+  }
+
+
+
 
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
@@ -2025,7 +2087,7 @@
       }
 
       if (event.key === 'ArrowDown') {
-        if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371].includes(currentIndex) && !input.value) {
+        if ([353, 355, 357, 359, 361, 363, 365, 367, 369, 371, 374, 377].includes(currentIndex) && !input.value) {
           return; // 답변이 입력되지 않았다면 아래 방향키를 눌러도 블러 처리하지 않음
         }
         event.preventDefault();
@@ -2084,7 +2146,9 @@
             221, 227, 234, 240, 246, 254, 260, 266, 272, 278,
             284, 290, 296, 302, 308, 314, 320, 327, 333, 339,
             345].includes(currentIndex) &&
-            ['0', '5', '6', '7', '8', '9'].includes(number))
+            ['0', '5', '6', '7', '8', '9'].includes(number)) || ([374].includes(currentIndex) &&
+            ['0', '8', '9'].includes(number)) || ([377].includes(currentIndex) &&
+            ['0', '7', '8', '9'].includes(number))
         ) {
           audioPlayer.src = ''; // 재생하지 않음
         } else {
@@ -2171,11 +2235,18 @@
         const personalInput = answerInputs.findIndex(input => input.id === 'personal');
         const sexInput = answerInputs.findIndex(input => input.id === 'sex');
         const yymmddInput = answerInputs.findIndex(input => input.id === 'yymmdd');
-        const otherInputs = answerInputs.filter((_, index) => ![personalInput, sexInput, yymmddInput].includes(index));
+        const educationInput = answerInputs.findIndex(input => input.id === 'education');
+        const locationInput = answerInputs.findIndex(input => input.id === 'location');
+        const otherInputs = answerInputs.filter((_, index) => ![personalInput, sexInput, yymmddInput, educationInput, locationInput].includes(index));
         const answers = otherInputs.map(input => input.value);
         const personal = answerInputs[personalInput].value;
         const sex = answerInputs[sexInput].value;
         const yymmdd = answerInputs[yymmddInput].value;
+
+        const education = answerInputs[educationInput].value;
+        const location = answerInputs[locationInput].value;
+
+
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '/submit', true);
@@ -2189,7 +2260,10 @@
         };
 
         // answers 배열과 elapsedTime, accessTime, personal, sex, yymmdd, criteriaAnswers 변수를 JSON 형태로 서버로 전송
-        xhr.send(JSON.stringify({ answers, accessTime, personal, sex, yymmdd, criteria, responseTimes: responseTimes, elapsedTime }));
+        xhr.send(JSON.stringify({
+          answers, accessTime, personal, sex, yymmdd, criteria, responseTimes: responseTimes,
+          elapsedTime, education, location
+        }));
       }
     }
     window.onload = function () {
